@@ -1,5 +1,6 @@
 package com.example.security;
 
+import com.example.dto.AdminDTO;
 import com.example.dto.CustomerDTO;
 import com.example.dto.LoginUserDTO;
 import com.example.mapper.UserMapper;
@@ -52,5 +53,18 @@ public class AuthenticationService {
                         input.getPassword())
         );
         return userRepository.findByUsernameOrEmail(input.getUsernameOrEmail(), input.getUsernameOrEmail());
+    }
+
+    public User addAdmin(AdminDTO input) {
+        if (userRepository.findByUsername(input.getUsername()).isPresent()) {
+            throw new RuntimeException("Username already exists!");
+        }
+
+        if (userRepository.findByEmail(input.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already exists!");
+        }
+        User user = userMapper.toAdminEntity(input);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 }

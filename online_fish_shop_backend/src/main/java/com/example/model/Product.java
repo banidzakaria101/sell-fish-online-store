@@ -1,6 +1,5 @@
 package com.example.model;
 
-import com.example.Enum.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -39,9 +37,6 @@ public class Product {
 
     private String image;
 
-    @Enumerated(EnumType.STRING)
-    private Category category;
-
     private Boolean available;
 
     @ManyToOne
@@ -54,7 +49,6 @@ public class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-
     private List<Category> categories;
 
     @OneToMany

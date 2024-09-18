@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -33,13 +34,17 @@ public class JwtService {
         return claimsResolver.apply(claims);
     }
 
-    public long getExpirationTime(String token) {
+    public long getExpirationTime() {
         return jwtExpiration;
     }
 
     public String generateToken(Map<String, Object> extractClaims, UserDetails userDetails, Role role) {
         extractClaims.put("role", role);
         return buildToken(extractClaims, userDetails, jwtExpiration);
+    }
+
+    public String generateToken(UserDetails userDetails, Role role) {
+        return generateToken(new HashMap<>(), userDetails, role);
     }
 
     private String buildToken(

@@ -28,6 +28,8 @@ public class AdminService {
         if (existingAdmin.isEmpty()) {
             Admin admin = new Admin();
             admin.setEmail(adminEmail);
+            admin.setAddress("example address");
+            admin.setPhoneNumber("0636323156");
             admin.setUsername("admin");
             admin.setRole(Role.ADMIN);
             admin.setPassword(passwordEncoder.encode("admin"));
