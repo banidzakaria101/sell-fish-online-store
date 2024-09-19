@@ -1,22 +1,22 @@
-import { HttpRequest, HttpHandlerFn, HttpEvent, HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { catchError, Observable, throwError } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
-import {AuthenticationService} from "../services/authentication.service";
 
-export const AuthInterceptor: HttpInterceptorFn = (request: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
-  const authService = inject(AuthenticationService);
+export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next:HttpHandlerFn): Observable<HttpEvent<unknown>> => {
+  const authService = inject(AuthService)
   const token = localStorage.getItem('token');
 
   if (token) {
-    request = request.clone({
+    req = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`
       }
-    });
+    })
   }
 
-  return next(request).pipe(
+
+  return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
         authService.logout();

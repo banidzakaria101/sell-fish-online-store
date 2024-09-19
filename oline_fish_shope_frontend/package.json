@@ -18,13 +18,15 @@
     "@angular/platform-browser": "^18.2.0",
     "@angular/platform-browser-dynamic": "^18.2.0",
     "@angular/router": "^18.2.0",
+    "@auth0/angular-jwt": "^5.2.0",
     "bootstrap": "^5.3.3",
+    "jwt-decode": "^4.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^18.2.3",
+    "@angular-devkit/build-angular": "^18.1.4",
     "@angular/cli": "^18.2.3",
     "@angular/compiler-cli": "^18.2.0",
     "@types/jasmine": "~5.1.0",
