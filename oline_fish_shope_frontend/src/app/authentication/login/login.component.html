@@ -1,0 +1,34 @@
+<main class="welcome-container">
+  <header class="brand-header">
+    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8264917f8793788b3993959f94d8176dd4b328dbeba49106292c6c23df63507f?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" class="brand-logo" alt="Respondo logo" />
+    <h1 class="brand-name">respondo</h1>
+  </header>
+
+  <section class="welcome-content">
+    <h2 class="welcome-title">Welcome Back</h2>
+    <form class="signup-form" [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="fullName" class="form-label">Full name</label>
+        <input formControlName="userNameOrEmail" type="text" id="fullName" class="form-input" placeholder="First name and last name" aria-label="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <input formControlName="password" type="password" id="password" class="form-input" placeholder="At least 12 characters" aria-label="Enter your password">
+      </div>
+      <button type="submit" class="signup-button" [disabled]="loginForm.invalid">Log in</button>
+    </form>
+  </section>
+
+  <footer class="site-footer">
+    <p class="copyright">© 2022 Brand, Inc.</p>
+    <nav class="footer-nav">
+      <a href="#" class="footer-link">Privacy</a>
+      <a href="#" class="footer-link">Terms</a>
+      <a href="#" class="footer-link">Sitemap</a>
+    </nav>
+  </footer>
+</main>
+
+
+
+<router-outlet />

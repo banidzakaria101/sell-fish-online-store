@@ -1,0 +1,153 @@
+:host {
+  display: contents;
+}
+
+.welcome-container {
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(23, 26, 31, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 814px;
+  height: 100dvh;
+  margin: auto;
+  padding: 26px 18px 26px 24px;
+}
+
+.brand-header {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #424856;
+  font: 600 20px Manrope, sans-serif;
+}
+
+.brand-logo {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  margin-bottom: 10px
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 401px;
+  max-width: 100%;
+  margin-top: 100px;
+}
+
+.welcome-title {
+  color: #171a1f;
+  text-align: center;
+  font: 400 32px Lexend, sans-serif;
+  margin-bottom: 39px;
+}
+
+.signup-form {
+  width: 100%;
+  font: 16px/2 Manrope, sans-serif;
+}
+
+.form-group {
+  margin-bottom: 23px;
+}
+
+.form-label {
+  display: block;
+  color: #424856;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  border-radius: 6px;
+  background-color: transparent;
+  width: 100%;
+  color: #bdc1ca;
+  font-weight: 400;
+  padding: 9px 16px;
+  border: 1px solid #bdc1ca;
+}
+
+.signup-button {
+  border-radius: 6px;
+  background-color: #6d31ed;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+.login-prompt {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  font: 400 14px/2 Manrope, sans-serif;
+}
+
+.login-text {
+  color: #323743;
+}
+
+.login-button {
+  color: #6d31ed;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 0 0 12px;
+}
+
+.site-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 100px;
+  font-family: Manrope, sans-serif;
+  color: #6f7787;
+  font-weight: 400;
+}
+
+.copyright {
+  font-size: 14px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 6px;
+}
+
+.footer-link {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-link:not(:last-child)::after {
+  content: "•";
+  margin-left: 6px;
+}
+
+@media (max-width: 991px) {
+  .welcome-container {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .welcome-content {
+    margin-top: 40px;
+  }
+
+  .site-footer {
+    margin-top: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
