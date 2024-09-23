@@ -23,13 +23,19 @@ public class SecurityConfiguration {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("api/auth/login", "api/auth/logout", "api/auth/register").permitAll()
-                ).sessionManagement(session -> session
+//                        .requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register").permitAll()
+//                        .requestMatchers("/api/product/add").hasRole("ADMIN")
+//                        .requestMatchers("/api/product/delete/**").hasRole("ADMIN")
+//                        .requestMatchers("/api/product/list").authenticated()
+                        .anyRequest().authenticated() // Secure all other endpoints
+                )
+                .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider)
@@ -37,4 +43,20 @@ public class SecurityConfiguration {
 
         return http.build();
     }
+
+
+//    @Bean
+//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("api/auth/login", "api/auth/logout", "api/auth/register").permitAll()
+//                ).sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                )
+//                .authenticationProvider(authenticationProvider)
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+//    }
 }

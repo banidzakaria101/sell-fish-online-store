@@ -1,15 +1,11 @@
 <main class="welcome-container">
-  <header class="brand-header">
-    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/8264917f8793788b3993959f94d8176dd4b328dbeba49106292c6c23df63507f?placeholderIfAbsent=true&apiKey=636115f9631f48bf97a296bc25ce3201" class="brand-logo" alt="Respondo logo" />
-    <h1 class="brand-name">respondo</h1>
-  </header>
 
   <section class="welcome-content">
     <h2 class="welcome-title">Welcome Back</h2>
     <form class="signup-form" [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group">
-        <label for="fullName" class="form-label">Full name</label>
-        <input formControlName="userNameOrEmail" type="text" id="fullName" class="form-input" placeholder="First name and last name" aria-label="Enter your full name">
+        <label for="usernameOrEmail" class="form-label">Username or Email</label>
+        <input formControlName="usernameOrEmail" type="text" id="usernameOrEmail" class="form-input" placeholder="Enter your username or email" aria-label="Enter your username or email">
       </div>
       <div class="form-group">
         <label for="password" class="form-label">Password</label>
@@ -29,6 +25,4 @@
   </footer>
 </main>
 
-
-
-<router-outlet />
+<router-outlet></router-outlet>

@@ -1,6 +1,5 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { Role } from '../enums/role';
-import { state } from '@angular/animations';
 import { AuthService } from '../services/auth.service';
 import { inject } from '@angular/core';
 

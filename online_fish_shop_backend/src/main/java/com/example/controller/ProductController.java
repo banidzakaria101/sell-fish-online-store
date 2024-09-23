@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.model.Product;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,9 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+
     @PostMapping("/add")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product add(@RequestBody Product product){
         return productService.addProduct(product);
     }

@@ -1,5 +1,6 @@
 package com.example.util;
 
+import com.example.model.User;
 import com.example.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,10 @@ public class UserDetailsServiceImp implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
-        return userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
+        User user = userRepository.findByUsernameOrEmail(usernameOrEmail, usernameOrEmail);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found: " + usernameOrEmail);
+        }
+        return user;
     }
 }

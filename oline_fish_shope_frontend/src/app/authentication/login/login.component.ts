@@ -21,8 +21,9 @@ export class LoginComponent {
     private router: Router,
     private jwtService: JwtService
   ) {
+    // Adjusted form control name
     this.loginForm = this.fb.group({
-      userNameOrEmail: ['', Validators.required],
+      usernameOrEmail: ['', Validators.required],
       password: ['', Validators.required]
     });
   }
@@ -35,22 +36,25 @@ export class LoginComponent {
 
     const formValues = this.loginForm.value;
     const loginUser: LoginUserDto = {
-      userNameOrEmail: formValues.userNameOrEmail,
+      usernameOrEmail: formValues.usernameOrEmail,  // Adjusted name
       password: formValues.password
     };
 
+    // Log the data that will be sent to the backend
+    console.log('Data sent to backend:', loginUser);
+
     this.authService.authenticate(loginUser).subscribe({
-      next: (response : LoginResponse) => this.handleLoginSuccess(response),
+      next: (response: LoginResponse) => this.handleLoginSuccess(response),
       error: (err) => this.handleLoginError(err),
       complete: () => console.log('Login process complete')
-    })
+    });
   }
 
   private handleLoginSuccess(response: LoginResponse) {
-    console.log('login successful:', response);
+    console.log('Login successful:', response);
 
     const token = response?.token;
-    if(!token) {
+    if (!token) {
       console.error('No token found in the response!');
       return;
     }
@@ -70,7 +74,7 @@ export class LoginComponent {
   }
 
   private redirectUserByRole(role: string | null) {
-    switch(role) {
+    switch (role) {
       case Role.ADMIN.toString():
         this.router.navigate(['/admin-dashboard']);
         break;
@@ -78,7 +82,7 @@ export class LoginComponent {
         this.router.navigate(['/user-dashboard']);
         break;
       default:
-        console.error('Unknown:', role)
+        console.error('Unknown role:', role);
     }
   }
 }

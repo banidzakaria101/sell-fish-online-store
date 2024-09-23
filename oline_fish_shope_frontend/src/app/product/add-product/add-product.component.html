@@ -1,0 +1,24 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label for="name">Product Name:</label>
+  <input id="name" formControlName="name" required>
+
+  <label for="description">Description:</label>
+  <textarea id="description" formControlName="description"></textarea>
+
+  <label for="price">Price:</label>
+  <input id="price" type="number" formControlName="price" required>
+
+  <label for="weight">Weight:</label>
+  <input id="weight" type="number" formControlName="weight" required>
+
+  <label for="stock">Stock:</label>
+  <input id="stock" type="number" formControlName="stock" required>
+
+  <label for="image">Image URL:</label>
+  <input id="image" formControlName="image">
+
+  <label for="available">Available:</label>
+  <input id="available" type="checkbox" formControlName="available">
+
+  <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+</form>
