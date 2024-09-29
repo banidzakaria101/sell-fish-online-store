@@ -1,0 +1,32 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo">
+      <img src="assets/images/fish-market-logo.png" alt="Fish Market Logo" class="logo-image" />
+      <span class="logo-text">Fresh Catch Market</span>
+    </div>
+
+    <nav class="navigation">
+      <ul class="nav-links">
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/products" routerLinkActive="active">Shop</a></li>
+        <li><a routerLink="/about-us" routerLinkActive="active">About Us</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="search-and-cart">
+      <div class="search-bar">
+        <input type="text" placeholder="Search for seafood..." class="search-input" />
+        <button class="search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <div class="cart-icon">
+        <a routerLink="/cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="cart-counter">{{ cartItemCount }}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

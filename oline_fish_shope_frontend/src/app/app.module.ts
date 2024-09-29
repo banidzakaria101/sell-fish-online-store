@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
-import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './admin/board-admin/board-admin.component';
 import { BoardUserComponent } from './board-user/board-user.component';
@@ -15,6 +14,12 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { SideNavComponent } from './admin/side-nav/side-nav.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ListProductComponent } from './product/list-product/list-product.component';
+import { HomePageComponent } from './home/home-page/home-page.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { SidenavComponent } from './home/sidenav/sidenav.component';
+import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 
 
@@ -23,13 +28,18 @@ import { ListProductComponent } from './product/list-product/list-product.compon
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
     SideNavComponent,
     AddProductComponent,
     ListProductComponent,
+    HomePageComponent,
+    HeaderComponent,
+    FooterComponent,
+    SidenavComponent,
+    CategorySidebarComponent,
+    WelcomePageComponent,
   ],
   imports: [
     BrowserModule,

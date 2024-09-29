@@ -1,0 +1,22 @@
+.main-layout {
+  display: flex;
+  min-height: calc(100vh - 60px); /* Adjust based on header/footer size */
+}
+
+/* Sidebar for categories */
+
+
+/* Content area for products */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+
+
+/* Footer styling */
+app-footer {
+  background-color: #f4f4f4;
+  padding: 10px;
+  text-align: center;
+}

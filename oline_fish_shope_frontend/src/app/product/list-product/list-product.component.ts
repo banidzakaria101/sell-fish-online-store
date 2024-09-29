@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 
@@ -8,7 +8,7 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./list-product.component.css']
 })
 export class ListProductComponent implements OnInit {
-  products: Product[] = [];
+  @Input() products: Product[] = [];  // Add @Input to accept products from parent component
 
   constructor(private productService: ProductService) {}
 

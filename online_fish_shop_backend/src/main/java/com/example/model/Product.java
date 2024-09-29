@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -39,18 +40,16 @@ public class Product {
 
     private Boolean available;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Admin admin;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_category",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)  // Foreign key to Category
+    private Category category;  // Each product belongs to one category
 
+    @JsonIgnore
     @OneToMany
     private List<Review> reviews;
 }

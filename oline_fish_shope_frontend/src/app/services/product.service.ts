@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
-import { JwtService } from './jwt.service'; // Import JwtService
+import { JwtService } from './jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private http: HttpClient, private jwtService: JwtService) { }
 
   addProduct(product: Product): Observable<Product> {
-    const token = this.jwtService.getToken(); // Get the token
+    const token = this.jwtService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
@@ -31,9 +31,7 @@ export class ProductService {
   }
 
   listProducts(): Observable<Product[]> {
-    const token = this.jwtService.getToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
     });
 
     return this.http.get<Product[]>(`${this.apiUrl}/list`, { headers });
@@ -47,4 +45,15 @@ export class ProductService {
 
     return this.http.get<Product[]>(`${this.apiUrl}/name`, { params: { name }, headers });
   }
+
+  // Get Products by Category Id
+getProductsByCategory(categoryId: number): Observable<Product[]> {
+  const token = this.jwtService.getToken();
+  const headers = new HttpHeaders({
+    'Authorization': `Bearer ${token}`
+  });
+
+  return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
+}
+
 }

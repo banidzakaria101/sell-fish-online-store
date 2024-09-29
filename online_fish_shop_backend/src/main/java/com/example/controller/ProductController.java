@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.model.Category;
 import com.example.model.Product;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class ProductController {
     private ProductService productService;
 
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/add")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public Product add(@RequestBody Product product){
         return productService.addProduct(product);
     }
@@ -35,6 +36,11 @@ public class ProductController {
     @GetMapping("/name")
     public List<Product> getByName(@RequestParam String name){
         return productService.searchProductByName(name);
+    }
+
+    @GetMapping("/by-category/{id}")
+    public List<Product> getByCategory(@PathVariable Long id){
+        return productService.getProductsByCategory(id);
     }
 
 

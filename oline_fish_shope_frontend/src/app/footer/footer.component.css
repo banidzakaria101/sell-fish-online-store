@@ -1,0 +1,89 @@
+.footer {
+  background: linear-gradient(135deg, #1e3a5f 0%, #4a90e2 100%);
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.footer-logo-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.footer-navigation {
+  flex-grow: 1;
+  margin-left: 30px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-links li {
+  margin: 0 15px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #e0f2ff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-contact, .footer-social {
+  margin-left: 30px;
+}
+
+.footer-contact h4, .footer-social h4 {
+  margin-bottom: 10px;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+}
+
+.social-icon {
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+  color: #ff6b6b; 
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #c0d9ff;
+}

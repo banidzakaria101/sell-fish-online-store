@@ -1,5 +1,6 @@
 package com.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String name;
@@ -25,7 +26,9 @@ public class Category {
     @Column(length = 1000)
     private String description;
 
-    @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)  // One category can have many products
     private Set<Product> products;
+
 
 }

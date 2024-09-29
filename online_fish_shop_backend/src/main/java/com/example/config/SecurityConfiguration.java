@@ -29,11 +29,12 @@ public class SecurityConfiguration {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register").permitAll()
-//                        .requestMatchers("/api/product/add").hasRole("ADMIN")
-//                        .requestMatchers("/api/product/delete/**").hasRole("ADMIN")
+                        .requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register").permitAll()
+                        .requestMatchers("/api/category/**").permitAll()
+                        .requestMatchers("/api/product/**").permitAll()
+
 //                        .requestMatchers("/api/product/list").authenticated()
-                        .anyRequest().authenticated() // Secure all other endpoints
+                        .anyRequest().permitAll() // Secure all other endpoints
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

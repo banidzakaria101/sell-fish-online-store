@@ -12,7 +12,7 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
       setHeaders: {
         Authorization: `Bearer ${token}`
       }
-    })
+    });
   }
 
 
@@ -25,5 +25,5 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, ne
     })
   );
 
-  
+
 };

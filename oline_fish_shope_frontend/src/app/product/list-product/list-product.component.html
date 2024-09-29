@@ -1,29 +1,20 @@
-<div *ngIf="products.length > 0; else noProducts">
-  <h2>Product List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Weight</th>
-        <th>Stock</th>
-        <th>Available</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of products">
-        <td>{{ product.id }}</td>
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.weight }}</td>
-        <td>{{ product.stock }}</td>
-        <td>{{ product.available ? 'Yes' : 'No' }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="products.length > 0; else noProducts" class="product-grid">
+  <div *ngFor="let product of products" class="product-card">
+    <div class="product-image">
+      <!-- Replace with actual product image -->
+      <img src="path/to/default-image.jpg" alt="{{ product.name }}">
+      <button class="favorite-btn">❤</button>
+    </div>
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p class="product-description">{{ product.description }}</p>
+      <p class="product-weight">{{ product.weight }}</p>
+      <p class="product-price">${{ product.price.toFixed(2) }} / each</p>
+      <p class="shipping-info" *ngIf="product.price >= 125">Ships FREE with $125+ of frozen items</p>
+      <button class="add-to-cart-btn" *ngIf="product.available && product.stock > 0">ADD TO CART</button>
+      <p class="out-of-stock" *ngIf="!product.available || product.stock === 0">Out of Stock</p>
+    </div>
+  </div>
 </div>
 
 <ng-template #noProducts>
