@@ -1,29 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 .sidebar {
-  width: 200px;
+  width: 250px;
   height: 100vh;
-  background-color: #f4f4f4;
-  padding: 15px;
+  background: linear-gradient(180deg, #1e3a5f 0%, #2c5282 100%);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
   position: fixed;
   top: 0;
   left: 0;
+  overflow-y: auto;
 }
 
-.sidebar h2 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-button {
-  display: block;
-  width: 100%;
-  padding: 10px;
+.logo {
+  width: 80px;
+  height: 80px;
   margin-bottom: 10px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sidebar-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 10px 0;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #e0f2ff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.sidebar-menu i {
+  margin-right: 10px;
+  font-size: 1.2rem;
 }

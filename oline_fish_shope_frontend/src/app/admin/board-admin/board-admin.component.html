@@ -1,7 +1,15 @@
-<div class="app-container">
+<div class="admin-container">
   <app-side-nav></app-side-nav>
-
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
+  <main class="main-content">
+    <header class="content-header">
+      <h1>Welcome to Admin Dashboard</h1>
+      <div class="user-info">
+        <span>Admin User</span>
+        <img src="assets/images/admin-avatar.png" alt="Admin Avatar" class="avatar">
+      </div>
+    </header>
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,41 +18,59 @@ import { ListProductComponent } from './product/list-product/list-product.compon
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { SidenavComponent } from './home/sidenav/sidenav.component';
 import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
-
+// Import Angular Material modules
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatFormField, MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SideNavComponent,
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
     BoardAdminComponent,
     BoardUserComponent,
-    SideNavComponent,
     AddProductComponent,
     ListProductComponent,
     HomePageComponent,
     HeaderComponent,
     FooterComponent,
-    SidenavComponent,
+    AdminListProductComponent,
     CategorySidebarComponent,
     WelcomePageComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
-
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormField,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
+    MatIconModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Product } from '../models/product.model';
 import { JwtService } from './jwt.service';
 
@@ -11,6 +11,13 @@ export class ProductService {
   private apiUrl = 'http://localhost:8088/api/product';
 
   constructor(private http: HttpClient, private jwtService: JwtService) { }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.jwtService.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
   addProduct(product: Product): Observable<Product> {
     const token = this.jwtService.getToken();
@@ -54,6 +61,20 @@ getProductsByCategory(categoryId: number): Observable<Product[]> {
   });
 
   return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
+}
+
+updateProduct(id: number, product: Partial<Product>): Observable<Product> {
+  if (id === undefined || id === null) {
+    return throwError('Product ID is required for update');
+  }
+  return this.http.put<Product>(`${this.apiUrl}/update/${id}`, product, {
+    headers: this.getAuthHeaders()
+  }).pipe(
+    catchError(error => {
+      console.error('Error updating product:', error);
+      return throwError('Error updating product. Please try again later.');
+    })
+  );
 }
 
 }

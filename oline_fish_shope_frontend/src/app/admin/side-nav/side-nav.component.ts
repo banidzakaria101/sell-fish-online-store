@@ -14,6 +14,6 @@ export class SideNavComponent {
   }
 
   navigateToListProduct(): void {
-    this.router.navigate(['/admin-dashboard/list-product']);
+    this.router.navigate(['/admin-dashboard/admin-list-product']);
   }
 }
