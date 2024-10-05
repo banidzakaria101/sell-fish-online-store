@@ -1,0 +1,8 @@
+target/*
+!target/enligne.pod.jar
+.git
+.gitignore
+mvnw
+mvnw.cmd
+Dockerfile
+README.md
