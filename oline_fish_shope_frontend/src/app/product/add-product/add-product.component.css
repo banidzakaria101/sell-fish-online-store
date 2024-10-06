@@ -1,41 +1,48 @@
-/* Add Product Component Styles */
-
 :host {
   display: block;
-  max-width: 500px;
+  max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 form {
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
 }
 
 label {
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-size: 1.1rem;
   color: #333;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
 }
 
 input,
-textarea {
-  padding: 0.75rem;
+textarea,
+select {
+  padding: 0.9rem;
   border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
+}
+
+textarea {
+  min-height: 120px;
 }
 
 input[type="checkbox"] {
@@ -44,20 +51,21 @@ input[type="checkbox"] {
 }
 
 button {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   background-color: #4a90e2;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: flex-start;
 }
 
 button:hover:not(:disabled) {
-  background-color: #3a7bc8;
+  background-color: #357abd;
+  transform: translateY(-2px);
 }
 
 button:disabled {
@@ -65,13 +73,14 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Error styles */
+/* Error styling for invalid fields */
 input.ng-invalid.ng-touched,
-textarea.ng-invalid.ng-touched {
+textarea.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
   border-color: #e74c3c;
+  box-shadow: 0 0 5px rgba(231, 76, 60, 0.1);
 }
 
-/* Add some spacing between form elements */
 input + label,
 textarea + label {
   margin-top: 1.5rem;

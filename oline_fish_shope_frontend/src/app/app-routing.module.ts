@@ -7,6 +7,7 @@ import { BoardAdminComponent } from './admin/board-admin/board-admin.component';
 import { authGuard } from './guards/auth.guard';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
 
 const routes: Routes = [
   {path : '',component : HomePageComponent},
@@ -19,7 +20,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomePageComponent},
       { path: 'add-product', component: AddProductComponent },
-      { path: 'list-product', component: ListProductComponent },
+      { path: 'admin-list-product', component: AdminListProductComponent },
     ]
   },
 ];

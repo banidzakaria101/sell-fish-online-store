@@ -20,5 +20,10 @@
   <label for="available">Available:</label>
   <input id="available" type="checkbox" formControlName="available">
 
+  <label for="category">Category:</label>
+  <select id="category" formControlName="category">
+    <option *ngFor="let cat of categories" [value]="cat.key">{{ cat.icon }} {{ cat.name }}</option>
+  </select>
+
   <button type="submit" [disabled]="productForm.invalid">Add Product</button>
 </form>

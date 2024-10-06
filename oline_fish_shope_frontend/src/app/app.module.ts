@@ -30,10 +30,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
+import { OrderManagementComponent } from './admin/order-management/order-management.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminListProductComponent,
     SideNavComponent,
     LoginComponent,
     RegisterComponent,
@@ -48,6 +51,7 @@ import { AdminListProductComponent } from './admin/admin-list-product/admin-list
     AdminListProductComponent,
     CategorySidebarComponent,
     WelcomePageComponent,
+    OrderManagementComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +70,7 @@ import { AdminListProductComponent } from './admin/admin-list-product/admin-list
     MatButtonModule,
     MatTableModule,
     MatIconModule,
+    MatSelectModule,
     MatButtonModule,
   ],
   providers: [

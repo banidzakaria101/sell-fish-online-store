@@ -11,6 +11,16 @@ import { Product } from '../../models/product.model';
 export class AddProductComponent {
   productForm: FormGroup;
 
+  categories = [
+    { key: 'FRESH_FISH', name: 'Fresh Fish', icon: '🐟' },
+    { key: 'SHELLFISH', name: 'Shellfish', icon: '🦐' },
+    { key: 'SUSHI_GRADE', name: 'Sushi Grade', icon: '🍣' },
+    { key: 'CEPHALOPODS', name: 'Cephalopods', icon: '🐙' },
+    { key: 'CRUSTACEANS', name: 'Crustaceans', icon: '🦀' },
+    { key: 'CANNED_FISH', name: 'Canned Fish', icon: '🥫' }
+  ];
+
+
   constructor(private fb: FormBuilder, private productService: ProductService) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -22,6 +32,7 @@ export class AddProductComponent {
       available: [true]
     });
   }
+
 
   onSubmit() {
     if (this.productForm.valid) {
