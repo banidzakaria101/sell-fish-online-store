@@ -15,5 +15,8 @@ public class Customer extends User{
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Basket basket;
+
 
 }

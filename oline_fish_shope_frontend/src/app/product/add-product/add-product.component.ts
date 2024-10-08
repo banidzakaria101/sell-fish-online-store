@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { BasketService } from '../../services/basket.service';
 
 @Component({
   selector: 'app-add-product',
@@ -21,7 +22,7 @@ export class AddProductComponent {
   ];
 
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(private fb: FormBuilder, private productService: ProductService, private basketService: BasketService) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: [''],
@@ -40,12 +41,24 @@ export class AddProductComponent {
       this.productService.addProduct(product).subscribe({
         next: (addedProduct) => {
           console.log('Product added successfully:', addedProduct);
-          this.productForm.reset(); 
+          this.productForm.reset();
         },
         error: (err) => {
           console.error('Error adding product:', err);
         }
       });
     }
+  }
+
+  addToCart(productId: number): void {
+    const customerId = 1;  // Retrieve the logged-in customer ID
+    this.basketService.addProductToBasket(customerId, productId).subscribe({
+      next: (basket) => {
+        console.log('Product added to basket', basket);
+      },
+      error: (error) => {
+        console.error('Error adding product to basket', error);
+      }
+    });
   }
 }

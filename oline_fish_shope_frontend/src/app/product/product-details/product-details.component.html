@@ -24,7 +24,7 @@
           <input type="text" class="quantity-input" value="1">
           <button class="quantity-btn">+</button>
         </div>
-        <button class="add-to-cart-btn">ADD TO CART</button>
+        <button (click)="addToCart">ADD TO CART</button>
       </div>
 
       <div class="shipping-info" *ngIf="product.price >= 1">
