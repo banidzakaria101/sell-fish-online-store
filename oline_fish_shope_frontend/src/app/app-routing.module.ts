@@ -8,8 +8,10 @@ import { authGuard } from './guards/auth.guard';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 const routes: Routes = [
+  { path: 'product/:id', component: ProductDetailsComponent },
   {path : '',component : HomePageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: WelcomePageComponent },

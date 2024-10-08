@@ -40,7 +40,7 @@ export class AddProductComponent {
       this.productService.addProduct(product).subscribe({
         next: (addedProduct) => {
           console.log('Product added successfully:', addedProduct);
-          this.productForm.reset(); // Reset the form after submission
+          this.productForm.reset(); 
         },
         error: (err) => {
           console.error('Error adding product:', err);

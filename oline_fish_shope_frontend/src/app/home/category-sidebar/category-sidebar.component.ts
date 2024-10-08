@@ -42,6 +42,6 @@ export class CategorySidebarComponent implements OnInit {
       'Crustaceans': '🦀',
       'Canned Fish': '🥫'
     };
-    return iconMap[category.name] || '🐠'; // Default icon if not found
+    return iconMap[category.name] || '';
   }
 }

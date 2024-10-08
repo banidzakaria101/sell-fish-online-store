@@ -32,6 +32,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
 import { OrderManagementComponent } from './admin/order-management/order-management.component';
 import { MatSelectModule } from '@angular/material/select';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { MatSelectModule } from '@angular/material/select';
     CategorySidebarComponent,
     WelcomePageComponent,
     OrderManagementComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

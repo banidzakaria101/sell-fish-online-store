@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 
@@ -8,9 +9,9 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./list-product.component.css']
 })
 export class ListProductComponent implements OnInit {
-  @Input() products: Product[] = [];  // Add @Input to accept products from parent component
+  @Input() products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -26,5 +27,13 @@ export class ListProductComponent implements OnInit {
         console.error('Error loading products:', error);
       }
     });
+  }
+
+  viewProduct(id: number | undefined): void {
+    if (id !== undefined) {
+      this.router.navigate(['/product', id]);
+    } else {
+      console.error('Product ID is undefined');
+    }
   }
 }

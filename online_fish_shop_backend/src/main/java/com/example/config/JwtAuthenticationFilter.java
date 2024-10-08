@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             username = jwtService.extractUsername(jwt);
         } catch (Exception e) {
             handlerExceptionResolver.resolveException(request, response, null, e);
-            return; // Stop processing if token extraction fails
+            return;
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

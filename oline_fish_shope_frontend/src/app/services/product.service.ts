@@ -54,27 +54,33 @@ export class ProductService {
   }
 
   // Get Products by Category Id
-getProductsByCategory(categoryId: number): Observable<Product[]> {
-  const token = this.jwtService.getToken();
-  const headers = new HttpHeaders({
-    'Authorization': `Bearer ${token}`
-  });
+  getProductsByCategory(categoryId: number): Observable<Product[]> {
+    const token = this.jwtService.getToken();
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
 
-  return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
-}
-
-updateProduct(id: number, product: Partial<Product>): Observable<Product> {
-  if (id === undefined || id === null) {
-    return throwError('Product ID is required for update');
+    return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
   }
-  return this.http.put<Product>(`${this.apiUrl}/update/${id}`, product, {
-    headers: this.getAuthHeaders()
-  }).pipe(
-    catchError(error => {
+
+  updateProduct(id: number, product: Partial<Product>): Observable<Product> {
+    if (id === undefined || id === null) {
+      return throwError('Product ID is required for update');
+      }
+      return this.http.put<Product>(`${this.apiUrl}/update/${id}`, product, {
+      headers: this.getAuthHeaders()
+      }).pipe(
+      catchError(error => {
       console.error('Error updating product:', error);
       return throwError('Error updating product. Please try again later.');
-    })
-  );
-}
+      })
+    );
+  }
+
+  getProductById(id: number): Observable<Product> {
+
+   const headers = this.getAuthHeaders();
+   return this.http.get<Product>(`${this.apiUrl}/details?id=${id}`, { headers });
+  }
 
 }

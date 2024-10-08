@@ -43,5 +43,10 @@ public class ProductController {
         return productService.getProductsByCategory(id);
     }
 
+    @GetMapping("/details")
+    public  Product details(@RequestParam long id){
+        return productService.getProductById(id);
+    }
+
 
 }
