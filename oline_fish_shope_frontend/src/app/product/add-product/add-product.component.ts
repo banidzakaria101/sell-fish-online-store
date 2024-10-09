@@ -50,15 +50,5 @@ export class AddProductComponent {
     }
   }
 
-  addToCart(productId: number): void {
-    const customerId = 1;  // Retrieve the logged-in customer ID
-    this.basketService.addProductToBasket(customerId, productId).subscribe({
-      next: (basket) => {
-        console.log('Product added to basket', basket);
-      },
-      error: (error) => {
-        console.error('Error adding product to basket', error);
-      }
-    });
-  }
+  
 }

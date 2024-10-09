@@ -18,8 +18,10 @@ import { ListProductComponent } from './product/list-product/list-product.compon
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { CheckboxModule } from 'primeng/checkbox';
+import { SliderModule } from 'primeng/slider';
+
 
 // Import Angular Material modules
 import { MatTableModule } from '@angular/material/table';
@@ -33,12 +35,21 @@ import { AdminListProductComponent } from './admin/admin-list-product/admin-list
 import { OrderManagementComponent } from './admin/order-management/order-management.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { DepartmentComponent } from './home/department/department.component';
+import { StockStatusComponent } from './home/stock-status/stock-status.component';
+import { RatingComponent } from './home/rating/rating.component';
+import { SalaryRangeComponent } from './home/salary-range/salary-range.component';
+import { OriginCountryComponent } from './home/origin-country/origin-country.component';
+import { HomeSidenavComponent } from './home/home-sidenav/home-sidenav.component';
+import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminListProductComponent,
     SideNavComponent,
+    CategorySidebarComponent,
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
@@ -50,10 +61,15 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
     HeaderComponent,
     FooterComponent,
     AdminListProductComponent,
-    CategorySidebarComponent,
     WelcomePageComponent,
     OrderManagementComponent,
     ProductDetailsComponent,
+    DepartmentComponent,
+    StockStatusComponent,
+    RatingComponent,
+    SalaryRangeComponent,
+    OriginCountryComponent,
+    HomeSidenavComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +80,8 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
+    CheckboxModule,
+    SliderModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -74,7 +92,7 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
-  ],
+],
   providers: [
     provideAnimationsAsync()
   ],

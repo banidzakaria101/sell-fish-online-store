@@ -1,11 +1,11 @@
 <div class="product-container" *ngIf="product">
   <div class="breadcrumb">
-    <span>Home > {{product.category}}</span>
+    <span>Home > {{ product.category }}</span>
   </div>
 
   <div class="product-details">
     <div class="product-image">
-      <div class="image-placeholder"></div>
+      <img src="{{ product.image || 'path-to-default-image.jpg' }}" alt="{{ product.name }}" />
     </div>
 
     <div class="product-info">
@@ -18,20 +18,29 @@
 
       <p class="product-description">{{ product.description }}</p>
 
-      <div class="add-to-cart-section">
-        <div class="quantity-selector">
-          <button class="quantity-btn">-</button>
-          <input type="text" class="quantity-input" value="1">
-          <button class="quantity-btn">+</button>
-        </div>
-        <button (click)="addToCart">ADD TO CART</button>
+      <div class="quantity-selector">
+        <button class="quantity-btn" (click)="decreaseQuantity()">-</button>
+        <input
+          type="number"
+          class="quantity-input"
+          [(ngModel)]="quantity"
+          min="1"
+        />
+        <button class="quantity-btn" (click)="increaseQuantity()">+</button>
       </div>
+      <button class="add-to-cart-btn" (click)="addToCart()">ADD TO CART</button>
 
       <div class="shipping-info" *ngIf="product.price >= 1">
-        <img src="path-to-shipping-icon.svg" alt="Shipping icon" class="shipping-icon">
-        <p>This item ships FREE with orders containing $125+ of Frozen items.
-        Orders with less than $125 of Frozen items ship for $19.99. Frozen
-        items ship with dry ice.</p>
+        <img
+          src="path-to-shipping-icon.svg"
+          alt="Shipping icon"
+          class="shipping-icon"
+        />
+        <p>
+          This item ships FREE with orders containing $125+ of Frozen items.
+          Orders with less than $125 of Frozen items ship for $19.99. Frozen
+          items ship with dry ice.
+        </p>
       </div>
     </div>
   </div>

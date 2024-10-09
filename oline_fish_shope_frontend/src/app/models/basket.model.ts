@@ -1,4 +1,6 @@
-import { Product } from './product.model';  
+import { Product } from './product.model';
+
+
 export interface Basket {
   id: number;
   totalPrice: number;

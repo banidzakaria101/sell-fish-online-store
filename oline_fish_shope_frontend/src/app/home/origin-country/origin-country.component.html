@@ -1,0 +1,16 @@
+<div class="country-nav">
+  <h3>Country Of Origin</h3>
+  <div *ngFor="let country of countries" class="field-checkbox">
+    <p-checkbox
+      [(ngModel)]="selectedCountries"
+      [label]="country"
+      name="group"
+      [value]="country"
+    >
+    </p-checkbox>
+  </div>
+  <p>Selected Countries:</p>
+  <ul>
+    <li *ngFor="let country of selectedCountries">{{ country }}</li>
+  </ul>
+</div>

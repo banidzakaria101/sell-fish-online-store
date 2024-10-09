@@ -1,11 +1,11 @@
 <div class="category-sidebar">
-  <h3>Fish Categories</h3>
-  <ul class="category-list">
-    <li *ngFor="let category of categories" (click)="selectCategory(category)">
-      <a href="#">
-        <span class="category-icon">{{ getCategoryIcon(category) }}</span>
-        {{ category.name }}
-      </a>
-    </li>
-  </ul>
+  <h3>Categories</h3>
+  <div *ngFor="let category of categories" class="field-checkbox">
+    <p-checkbox
+      [(ngModel)]="selectedCategories"
+      [label]="category"
+      name="categoryGroup"
+      [value]="category">
+    </p-checkbox>
+  </div>
 </div>

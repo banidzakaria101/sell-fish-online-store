@@ -23,7 +23,6 @@ public class BasketService {
     @Autowired
     private UserRepository userRepository;
 
-    // Add a product to the basket of the customer
     public Basket addProductToBasket(Long customerId, Long productId) {
         Optional<Customer> customerOpt = userRepository.findById(customerId).filter(user -> user instanceof Customer).map(user -> (Customer) user);
         Optional<Product> productOpt = productRepository.findById(productId);
@@ -32,7 +31,7 @@ public class BasketService {
             Customer customer = customerOpt.get();
             Product product = productOpt.get();
 
-            Basket basket = customer.getBasket();  // Assuming Basket is initialized in the Customer entity
+            Basket basket = customer.getBasket();
             if (basket == null) {
                 basket = new Basket();
                 basket.setCustomer(customer);

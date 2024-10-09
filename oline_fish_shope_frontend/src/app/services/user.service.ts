@@ -25,4 +25,9 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+
+  // New method to get the current user's information
+  getCurrentUser(): Observable<any> {
+    return this.http.get(API_URL + 'currentUser'); // Replace with the actual endpoint
+  }
 }

@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product.model';
-import { Basket } from '../models/basketModel';
+import { Basket } from '../models/basket.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BasketService {
-  private basket: Basket = new Basket();
+  private basket: Basket = {
+    id: 0,
+    totalPrice: 0,
+    totalQuantity: 0,
+    products: [],
+    customerId: 0
+  };
 
   constructor() {}
 
@@ -16,7 +22,7 @@ export class BasketService {
   }
 
   // Add product to the basket
-  addToBasket(product: Product): void {
+  addToBasket(customerId: number, productId: number, product: Product): void {
     const existingProduct = this.basket.products.find(p => p.id === product.id);
 
     if (existingProduct) {
@@ -28,6 +34,9 @@ export class BasketService {
     // Update total price and quantity
     this.basket.totalPrice += product.price;
     this.basket.totalQuantity += 1;
+
+    // Set the customer ID
+    this.basket.customerId = customerId;
   }
 
   // Remove product from the basket
@@ -44,6 +53,12 @@ export class BasketService {
 
   // Clear the basket
   clearBasket(): void {
-    this.basket = new Basket();
+    this.basket = {
+      id: 0,
+      totalPrice: 0,
+      totalQuantity: 0,
+      products: [],
+      customerId: 0
+    };  
   }
 }

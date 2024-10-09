@@ -1,0 +1,5 @@
+<p-slider [(ngModel)]="rangeValues" [range]="true" styleClass="w-14rem"></p-slider>
+
+<!-- Display the selected salary range -->
+<p>Minimum Salary: {{ rangeValues[0] | currency }}</p>
+<p>Maximum Salary: {{ rangeValues[1] | currency }}</p>

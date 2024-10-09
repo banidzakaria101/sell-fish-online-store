@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
-import { BasketService } from '../../services/basket.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -11,11 +11,12 @@ import { BasketService } from '../../services/basket.service';
 })
 export class ProductDetailsComponent implements OnInit {
   product!: Product;
+  quantity: number = 1; // Default quantity
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private basketService: BasketService
+    private cartService: CartService,
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +36,18 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(): void {
-    this.basketService.addToBasket(this.product);
-    console.log('Product added to basket:', this.product);
+    const productToAdd = { ...this.product, quantity: this.quantity }; // Include quantity
+    this.cartService.addToCart(productToAdd);
+    console.log('Product added to cart:', productToAdd);
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   }
 }

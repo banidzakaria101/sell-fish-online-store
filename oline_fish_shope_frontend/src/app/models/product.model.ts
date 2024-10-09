@@ -9,6 +9,6 @@ export interface Product {
   stock: number;
   image?: string;
   available?: boolean;
-  category: Category; 
+  category: Category;
 
 }

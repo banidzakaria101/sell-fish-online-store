@@ -1,0 +1,17 @@
+<div class="department-nav">
+  <h3>Departments</h3>
+  <div *ngFor="let department of departments" class="field-checkbox">
+  <p-checkbox
+    [(ngModel)]="selectedDepartments"
+    [label]="department"
+    name="departmentGroup"
+    [value]="department">
+  </p-checkbox>
+</div>
+<p>Selected Department:</p>
+<ul>
+  <li *ngFor="let department of selectedDepartments">{{ departments }}</li>
+</ul>
+</div>
+
+
