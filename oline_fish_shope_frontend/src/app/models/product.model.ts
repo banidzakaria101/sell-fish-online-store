@@ -1,6 +1,7 @@
 import { Category } from "./category.model";
 
 export interface Product {
+isFavorite: any;
   id?: number;
   name: string;
   description?: string;

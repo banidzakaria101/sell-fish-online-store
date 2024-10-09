@@ -1,23 +1,34 @@
+<!-- list-product.component.html -->
 <div *ngIf="products.length > 0; else noProducts" class="product-grid">
-  <div *ngFor="let product of products" class="product-card" (click)="viewProduct(product.id)">
+  <div *ngFor="let product of products"
+       class="product-card"
+       (click)="viewProduct(product.id)">
     <div class="product-image">
-      <img src="path/to/default-image.jpg" [alt]="product.name">
-      <button class="favorite-btn" aria-label="Add to favorites">❤</button>
+      <img [src]="product.image || 'assets/images/default-fish.jpg'"
+           [alt]="product.name">
+      <button class="favorite-btn"
+              (click)="toggleFavorite($event, product.id)"
+              [class.active]="product.isFavorite">
+        <i class="far" [class.fa-heart]="!product.isFavorite" [class.fas]="product.isFavorite"></i>
+      </button>
     </div>
     <div class="product-info">
-      <h3 id="product-name-{{product.id}}">{{ product.name }}</h3>
+      <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-description">{{ product.description }}</p>
-      <p class="product-weight">{{ product.weight }}</p>
-      <p class="product-price">${{ product.price.toFixed(2) }} / each</p>
-      <p class="shipping-info" *ngIf="product.price >= 125">Ships FREE with $125+ of frozen items</p>
-      <button class="add-to-cart-btn" *ngIf="product.available && product.stock > 0"
-              attr.aria-describedby="product-name-{{product.id}}">
-        ADD TO CART
-      </button>
-      <p class="out-of-stock" *ngIf="!product.available || product.stock === 0">Out of Stock</p>
+      <div class="price-action">
+        <span class="price">${{ product.price.toFixed(2) }}</span>
+        <button class="add-btn"
+                (click)="addToCart($event, product)"
+                [disabled]="!product.available || product.stock === 0">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>
+
 <ng-template #noProducts>
-  <p>No products available.</p>
+  <div class="no-products">
+    <p>No products available.</p>
+  </div>
 </ng-template>

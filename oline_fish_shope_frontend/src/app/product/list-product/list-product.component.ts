@@ -1,3 +1,4 @@
+// list-product.component.ts
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
@@ -6,12 +7,15 @@ import { Product } from '../../models/product.model';
 @Component({
   selector: 'app-list-product',
   templateUrl: './list-product.component.html',
-  styleUrls: ['./list-product.component.css']
+  styleUrls: ['./list-product.component.scss']
 })
 export class ListProductComponent implements OnInit {
   @Input() products: Product[] = [];
 
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -30,10 +34,26 @@ export class ListProductComponent implements OnInit {
   }
 
   viewProduct(id: number | undefined): void {
-    if (id !== undefined) {
+    if (id) {
       this.router.navigate(['/product', id]);
-    } else {
-      console.error('Product ID is undefined');
+    }
+  }
+
+  toggleFavorite(event: Event, id: number | undefined): void {
+    event.stopPropagation();
+    if (id) {
+      const product = this.products.find(p => p.id === id);
+      if (product) {
+        product.isFavorite = !product.isFavorite;
+
+      }
+    }
+  }
+
+  addToCart(event: Event, product: Product): void {
+    event.stopPropagation();
+    if (product.id) {
+      console.log('Adding to cart:', product);
     }
   }
 }
