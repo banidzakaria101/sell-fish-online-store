@@ -1,23 +1,77 @@
 .sidebar {
-  width: 300px; 
-  padding: 20px;
-  background-color: #f8f9fa;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  height: 100vh;
-  overflow-y: auto;
+  width: 280px;
+  padding: 50px;
+  border: 0,5px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(42, 41, 41, 0.1);
+  border-radius: 8px;
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+      color: #111827;
+    }
+
+    .clear-btn {
+      color: #4F46E5;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 4px 8px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .filter-section {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #E5E7EB;
+
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    h4 {
+      font-size: 16px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    ::ng-deep {
+      app-salary-range,
+      app-department,
+      app-category-sidebar,
+      app-origin-country {
+        display: block;
+        margin-top: 8px;
+      }
+    }
+  }
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
+:host ::ng-deep {
+  .checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.filter-section {
-  margin-bottom: 20px;
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
 }
-
-.filter-section h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-

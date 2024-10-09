@@ -1,20 +1,30 @@
 <div class="sidebar">
-  <h2>Filters</h2>
+  <div class="filters-header">
+    <h3>Filters</h3>
+    <button class="clear-btn" (click)="clearAllFilters()">Clear all</button>
+  </div>
 
+  <!-- Salary/Price Range Section -->
   <div class="filter-section">
-    <h3>Salary Range</h3>
     <app-salary-range></app-salary-range>
   </div>
 
+  <!-- Department Section -->
   <div class="filter-section">
     <app-department></app-department>
   </div>
 
+  <!-- Category Section -->
   <div class="filter-section">
     <app-category-sidebar></app-category-sidebar>
   </div>
 
+  <!-- Country of Origin Section -->
   <div class="filter-section">
     <app-origin-country></app-origin-country>
+  </div>
+
+  <!-- Stock Status Section -->
+  <div class="filter-section">
   </div>
 </div>
