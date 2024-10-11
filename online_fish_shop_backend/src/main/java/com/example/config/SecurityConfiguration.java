@@ -32,6 +32,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/auth/login", "/api/auth/logout", "/api/auth/register").permitAll()
                         .requestMatchers("/api/category/**").permitAll()
                         .requestMatchers("/api/product/**").permitAll()
+                        .requestMatchers("/api/orders").permitAll()
 
 //                        .requestMatchers("/api/product/list").authenticated()
                         .anyRequest().permitAll() // Secure all other endpoints

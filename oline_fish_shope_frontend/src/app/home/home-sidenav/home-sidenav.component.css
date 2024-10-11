@@ -1,77 +1,76 @@
+/* Sidebar Styles */
 .sidebar {
   width: 280px;
   padding: 50px;
-  border: 0,5px solid #e0e0e0;
+  border: 0.5px solid #e0e0e0; /* Corrected border syntax */
   box-shadow: 0 2px 4px rgba(42, 41, 41, 0.1);
   border-radius: 8px;
-
-  .filters-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-
-    h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0;
-      color: #111827;
-    }
-
-    .clear-btn {
-      color: #4F46E5;
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      padding: 4px 8px;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .filter-section {
-    margin-bottom: 24px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid #E5E7EB;
-
-    &:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    h4 {
-      font-size: 16px;
-      font-weight: 500;
-      color: #374151;
-      margin-bottom: 12px;
-    }
-
-    ::ng-deep {
-      app-salary-range,
-      app-department,
-      app-category-sidebar,
-      app-origin-country {
-        display: block;
-        margin-top: 8px;
-      }
-    }
-  }
 }
 
-:host ::ng-deep {
-  .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+.filters-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
 
-  .checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+.filters-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #111827;
+}
+
+.clear-btn {
+  color: #4F46E5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px 8px;
+}
+
+.clear-btn:hover {
+  text-decoration: underline;
+}
+
+.filter-section {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.filter-section h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+/* Custom styles for specific components */
+app-salary-range,
+app-department,
+app-category-sidebar,
+app-origin-country {
+  display: block;
+  margin-top: 8px;
+}
+
+/* Checkbox Group Styles */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

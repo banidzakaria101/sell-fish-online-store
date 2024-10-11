@@ -9,18 +9,19 @@ import { HomePageComponent } from './home/home-page/home-page.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent },
   {path : '',component : HomePageComponent},
   { path: 'login', component: LoginComponent },
   { path: 'welcome', component: WelcomePageComponent },
+  { path: 'user-dashboard', component: UserDashboardComponent},
   {
     path: 'admin-dashboard',
-    component:BoardAdminComponent,
+    component: BoardAdminComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'home', component: HomePageComponent},
       { path: 'add-product', component: AddProductComponent },
       { path: 'admin-list-product', component: AdminListProductComponent },
     ]

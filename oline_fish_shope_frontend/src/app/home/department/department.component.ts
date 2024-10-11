@@ -9,4 +9,10 @@ import { Department } from '../../enums/department';
 export class DepartmentComponent {
   departments = Object.values(Department);
   selectedDepartments: string[] = [];
+  isExpanded: boolean = false;
+
+  toggleDepartments() {
+    this.isExpanded = !this.isExpanded;
+}
+
 }

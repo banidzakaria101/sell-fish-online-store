@@ -4,7 +4,9 @@ import com.example.dto.AdminDTO;
 import com.example.dto.CustomerDTO;
 import com.example.dto.LoginUserDTO;
 import com.example.mapper.UserMapper;
+import com.example.model.Customer;
 import com.example.model.User;
+import com.example.repository.CustomerRepository;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +21,9 @@ public class AuthenticationService {
     private UserRepository userRepository;
 
     @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
     private UserMapper userMapper;
 
     @Autowired
@@ -27,23 +32,19 @@ public class AuthenticationService {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    public User singUp(CustomerDTO input) {
+    public User signUp(CustomerDTO input) {
         if (userRepository.findByUsername(input.getUsername()).isPresent()) {
-            throw new RuntimeException(
-                    "Username already exists!"
-            );
+            throw new RuntimeException("Username already exists!");
         }
 
         if (userRepository.findByEmail(input.getEmail()).isPresent()) {
-            throw new RuntimeException(
-                    "Email already exists!"
-            );
-
+            throw new RuntimeException("Email already exists!");
         }
 
-        User user = userMapper.toCustomerEntity(input);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        Customer customer = userMapper.toCustomerEntity(input);
+        System.out.println(customer.toString());
+        customer.setPassword(passwordEncoder.encode(customer.getPassword()));
+        return customerRepository.save(customer);
     }
 
     public User authenticate(LoginUserDTO input) {

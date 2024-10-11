@@ -1,16 +1,16 @@
-<div class="country-nav">
-  <h3>Country Of Origin</h3>
-  <div *ngFor="let country of countries" class="field-checkbox">
-    <p-checkbox
-      [(ngModel)]="selectedCountries"
-      [label]="country"
-      name="group"
-      [value]="country"
-    >
-    </p-checkbox>
+<div class="country-sidebar">
+  <div class="country-header" (click)="toggleCountries()">
+    <h3>Country Of Origin</h3>
+    <i class="pi" [ngClass]="{'pi-chevron-down': !isCountriesVisible, 'pi-chevron-up': isCountriesVisible}"></i>
   </div>
-  <p>Selected Countries:</p>
-  <ul>
-    <li *ngFor="let country of selectedCountries">{{ country }}</li>
-  </ul>
+  <div class="country-content" [ngClass]="{'expanded': isCountriesVisible}">
+    <div *ngFor="let country of countries" class="field-checkbox">
+      <p-checkbox
+        [(ngModel)]="selectedCountries"
+        [label]="country"
+        name="countryGroup"
+        [value]="country">
+      </p-checkbox>
+    </div>
+  </div>
 </div>

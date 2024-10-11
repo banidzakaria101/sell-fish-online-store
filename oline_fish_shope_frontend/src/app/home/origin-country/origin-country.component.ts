@@ -9,4 +9,10 @@ import { OriginCountry } from '../../enums/origin-country.enum';
 export class OriginCountryComponent {
   countries = Object.values(OriginCountry);
   selectedCountries: OriginCountry[] = [];
+
+  isCountriesVisible: boolean = false;
+
+  toggleCountries() {
+    this.isCountriesVisible = !this.isCountriesVisible; // Toggle the visibility
+  }
 }

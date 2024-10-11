@@ -21,6 +21,12 @@ import { FooterComponent } from './footer/footer.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { CheckboxModule } from 'primeng/checkbox';
 import { SliderModule } from 'primeng/slider';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ChipsModule } from 'primeng/chips';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { TableModule } from 'primeng/table';
+
 
 
 // Import Angular Material modules
@@ -42,6 +48,8 @@ import { SalaryRangeComponent } from './home/salary-range/salary-range.component
 import { OriginCountryComponent } from './home/origin-country/origin-country.component';
 import { HomeSidenavComponent } from './home/home-sidenav/home-sidenav.component';
 import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
+import { ProductSearchComponent } from './product/product-search/product-search.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 
 @NgModule({
@@ -70,11 +78,16 @@ import { CategorySidebarComponent } from './home/category-sidebar/category-sideb
     SalaryRangeComponent,
     OriginCountryComponent,
     HomeSidenavComponent,
+    ProductSearchComponent,
+    UserDashboardComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    InputTextModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -82,6 +95,9 @@ import { CategorySidebarComponent } from './home/category-sidebar/category-sideb
     RouterLink,
     CheckboxModule,
     SliderModule,
+    FloatLabelModule,
+    ChipsModule,
+    ButtonModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -92,6 +108,10 @@ import { CategorySidebarComponent } from './home/category-sidebar/category-sideb
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
+    TableModule,
+    InputTextModule,
+    CheckboxModule,
+    ButtonModule
 ],
   providers: [
     provideAnimationsAsync()

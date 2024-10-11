@@ -41,7 +41,6 @@ export class AuthService {
 
   // Authenticate (Login)
   authenticate(loginUserDto: LoginUserDto): Observable<LoginResponse> {
-    // Log the data just before it's sent to the backend
     console.log('Data sent to backend from AuthService:', loginUserDto);
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, loginUserDto).pipe(
       tap((loginResponse: LoginResponse) => {
@@ -59,7 +58,6 @@ export class AuthService {
   logout(): void {
     this.jwtService.removeToken();
     this.currentUserSubject.next(null);
-    this.router.navigate(['/login']);
   }
 
   // Check if the user is logged in
@@ -88,5 +86,10 @@ export class AuthService {
       return this.jwtService.decodeToken(token);
     }
     return null;
+  }
+
+   // Get the current user details
+   getCurrentUser(): any {
+    return this.currentUserSubject.value;
   }
 }

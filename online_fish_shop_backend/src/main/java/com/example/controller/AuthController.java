@@ -32,7 +32,8 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<User> singUp(@RequestBody CustomerDTO customerDTO) {
-        User user = authenticationService.singUp(customerDTO);
+        System.out.println(customerDTO.toString());
+        User user = authenticationService.signUp(customerDTO);
         return ResponseEntity.ok(user);
     }
 

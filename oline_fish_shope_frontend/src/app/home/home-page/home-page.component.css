@@ -1,22 +1,43 @@
 .main-layout {
   display: flex;
-  min-height: calc(100vh - 60px); /* Adjust based on header/footer size */
+  gap: 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-/* Sidebar for categories */
+.sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
 
-
-/* Content area for products */
 .content {
-  flex-grow: 1;
-  padding: 20px;
+  flex: 1;
+  min-width: 0;
 }
 
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0;
+}
 
+.content-header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
 
-/* Footer styling */
-app-footer {
-  background-color: #f4f4f4;
-  padding: 10px;
-  text-align: center;
+.p-button-text {
+  color: #4F46E5;
+}
+
+.p-button-text:hover {
+  background: rgba(79, 70, 229, 0.04);
+}
+
+.p-button-text:focus {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px rgba(79, 70, 229, 0.3);
 }

@@ -62,4 +62,14 @@ public class BasketService {
 
         throw new RuntimeException("Customer or Product not found");
     }
+
+    public Basket getBasketByCustomerId(Long customerId) {
+        Optional<Customer> customerOpt = userRepository.findById(customerId).filter(user -> user instanceof Customer).map(user -> (Customer) user);
+
+        if (customerOpt.isPresent()) {
+            return customerOpt.get().getBasket();
+        }
+
+        throw new RuntimeException("Customer not found");
+    }
 }

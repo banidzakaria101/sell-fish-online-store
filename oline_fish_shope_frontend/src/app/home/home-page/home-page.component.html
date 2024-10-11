@@ -1,14 +1,13 @@
 <app-header></app-header>
-
 <div class="main-layout">
   <div class="sidebar">
     <app-home-sidenav></app-home-sidenav>
   </div>
 
   <div class="content">
+    <app-product-search (search)="onSearch($event)"></app-product-search>
     <h2>Products</h2>
     <app-list-product [products]="filteredProducts"></app-list-product>
   </div>
 </div>
-
 <app-footer></app-footer>

@@ -14,7 +14,6 @@
 
 .main-content {
   flex-grow: 1;
-  margin-left: 250px;
   padding: 20px;
   background-color: #f0f4f8;
   min-height: 100vh;
@@ -66,7 +65,7 @@
 
   .main-content {
     margin-left: 0;
-    padding-top: 60px; 
+    padding-top: 60px;
   }
 
   .content-header {

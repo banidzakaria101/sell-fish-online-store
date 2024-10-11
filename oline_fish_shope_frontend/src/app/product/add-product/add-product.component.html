@@ -1,29 +1,58 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  <label for="name">Product Name:</label>
-  <input id="name" formControlName="name" required>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="create-product-form">
+  <h2>Create Product</h2>
 
-  <label for="description">Description:</label>
-  <textarea id="description" formControlName="description"></textarea>
+  <div class="form-group full-width">
+    <input id="name" formControlName="name" placeholder="Product Name" required>
+  </div>
 
-  <label for="price">Price:</label>
-  <input id="price" type="number" formControlName="price" required>
+  <div class="form-row">
+    <label for="price">
+    <div class="form-group">
+      Price
+      <input id="price" type="number" formControlName="price" placeholder="Price" required>
+    </div>
+  </label>
+  <label for="weigh">
+    Weigh
+    <div class="form-group">
+      <input id="weight" type="number" formControlName="weight" placeholder="Weight" required>
+    </div>
+  </label>
+  <label for="stock">
+    Stock
+    <div class="form-group">
+      <input id="stock" type="number" formControlName="stock" placeholder="Stock" required>
+    </div>
+  </label>
+  </div>
 
-  <label for="weight">Weight:</label>
-  <input id="weight" type="number" formControlName="weight" required>
+  <div class="form-group full-width">
+    <textarea id="description" formControlName="description" placeholder="Product description..."></textarea>
+  </div>
 
-  <label for="stock">Stock:</label>
-  <input id="stock" type="number" formControlName="stock" required>
+  <div class="form-group full-width">
+    <div class="image-upload-area">
+      <i class="fas fa-file-image"></i>
+      <p>Drop or select images</p>
+    </div>
+  </div>
 
-  <label for="image">Image URL:</label>
-  <input id="image" formControlName="image">
 
-  <label for="available">Available:</label>
-  <input id="available" type="checkbox" formControlName="available">
+    <div class="form-group">
+      <select id="category"  formControlName="category" required>
+        <option *ngFor="let cat of categories" [ngValue]="cat">{{ cat.icon }} {{ cat.name }}</option>
+      </select>
+    </div>
 
-  <label for="category">Category:</label>
-  <select id="category" formControlName="category">
-    <option *ngFor="let cat of categories" [value]="cat.key">{{ cat.icon }} {{ cat.name }}</option>
-  </select>
 
-  <button type="submit" [disabled]="productForm.invalid">Add Product</button>
+  <div id="available" class="form-group">
+    <label for="available">
+      Available
+      <input id="available" type="checkbox" formControlName="available">
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="productForm.invalid" class="submit-button">Add Product</button>
 </form>
+
+

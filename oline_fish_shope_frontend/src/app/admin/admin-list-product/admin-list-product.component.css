@@ -1,26 +1,26 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
 
-table {
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: #f8f9fa;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+:host ::ng-deep .p-inputtext {
   width: 100%;
 }
 
-.mat-form-field {
-  font-size: 14px;
-  width: 100%;
-}
-
-td, th {
-  width: 25%;
-}
-
-.mat-column-price, .mat-column-stock {
-  width: 100px;
-}
-
-.mat-column-available {
-  width: 80px;
-}
-
-.mat-column-actions {
-  width: 60px;
+:host ::ng-deep .p-checkbox {
+  display: flex;
+  justify-content: center;
 }

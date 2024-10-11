@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Category } from '../../enums/category.enum';
 
 @Component({
@@ -9,6 +9,9 @@ import { Category } from '../../enums/category.enum';
 export class CategorySidebarComponent {
   categories = Object.values(Category);
   selectedCategories: string[] = [];
+  isExpanded: boolean = false;
 
-
+  toggleCategories() {
+    this.isExpanded = !this.isExpanded;
+  }
 }

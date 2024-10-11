@@ -11,24 +11,54 @@ import { Category } from '../../models/category.model';
 export class HomePageComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  currentCategory: Category | null = null;
+  searchTerm: string = '';
 
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    // Fetch all products initially
-    this.productService.listProducts().subscribe(
-      (data: Product[]) => {
+    this.productService.listProducts().subscribe({
+      next: (data: Product[]) => {
         this.products = data;
-        this.filteredProducts = data; // Show all products initially
+        this.filteredProducts = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error fetching products:', error);
       }
-    );
+    });
   }
 
-  // Handle category selection from sidebar
   onCategorySelected(category: Category): void {
-    this.filteredProducts = this.products.filter(product => product.category?.id === category.id);
+    this.currentCategory = category;
+    this.applyFilters();
+  }
+
+  onSearch(searchTerm: string): void {
+    this.searchTerm = searchTerm;
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
+    let filtered = [...this.products];
+
+    if (this.currentCategory) {
+      filtered = filtered.filter(product =>
+        product.category?.id === this.currentCategory?.id
+      );
+    }
+
+    if (this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.toLowerCase();
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(searchLower));
+    }
+
+    this.filteredProducts = filtered;
+  }
+
+  clearFilters(): void {
+    this.currentCategory = null;
+    this.searchTerm = '';
+    this.filteredProducts = [...this.products];
   }
 }

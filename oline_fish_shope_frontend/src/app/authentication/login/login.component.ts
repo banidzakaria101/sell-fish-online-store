@@ -36,7 +36,7 @@ export class LoginComponent {
 
     const formValues = this.loginForm.value;
     const loginUser: LoginUserDto = {
-      usernameOrEmail: formValues.usernameOrEmail,  // Adjusted name
+      usernameOrEmail: formValues.usernameOrEmail, 
       password: formValues.password
     };
 

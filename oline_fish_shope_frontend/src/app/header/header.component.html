@@ -13,8 +13,15 @@
   <div class="user-section">
     <span class="pi pi-shopping-cart" style="font-size: 1.5rem"></span>
     <span class="pi pi-bell" style="font-size: 1.5rem"></span>
-    <span class="user-name">Amanda Green</span>
-    <span class="pi pi-user" style="font-size: 1.5rem"></span>
-    <span class="pi pi-chevron-down" style="font-size: 1rem"></span>
+
+    <!-- Display User Name if Logged In -->
+    <ng-container *ngIf="isLoggedIn(); else loggedOut">
+      <span class="user-name">{{ getUserName() }}</span>
+      <button (click)="logout()" class="btn">Logout</button>
+    </ng-container>
+    <ng-template #loggedOut>
+      <button (click)="login()" class="btn">Login</button>
+      <button (click)="signUp()" class="btn">Sign Up</button>
+    </ng-template>
   </div>
 </div>
