@@ -1,1 +1,21 @@
-<p>user-orders works!</p>
+<div class="card">
+  <h3>Your Orders</h3>
+  <p-table [value]="orders" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Order ID</th>
+        <th>Order Date</th>
+        <th>Status</th>
+        <th>Total Amount</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>{{ order.id }}</td>
+        <td>{{ order.orderDate | date:'short' }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.totalAmount | currency }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

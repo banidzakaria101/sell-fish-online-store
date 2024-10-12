@@ -10,6 +10,8 @@ import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { AdminListProductComponent } from './admin/admin-list-product/admin-list-product.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { OrderManagementComponent } from './admin/order-management/order-management.component';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
     children: [
       { path: 'add-product', component: AddProductComponent },
       { path: 'admin-list-product', component: AdminListProductComponent },
+      { path: 'orders', component: OrderManagementComponent },
+      { path: 'users', component: UserManagementComponent }
     ]
   },
 ];

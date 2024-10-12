@@ -9,9 +9,9 @@ import { Category } from '../../enums/category.enum';
 export class CategorySidebarComponent {
   categories = Object.values(Category);
   selectedCategories: string[] = [];
-  isExpanded: boolean = false;
+  isCategoriesVisible: boolean = false; // Initial state of the category list
 
   toggleCategories() {
-    this.isExpanded = !this.isExpanded;
+    this.isCategoriesVisible = !this.isCategoriesVisible;
   }
 }

@@ -1,9 +1,10 @@
 <div class="category-sidebar">
-  <div class="category-header" (click)="toggleCategories()">
-    <h3>Category</h3>
-    <i class="pi" [ngClass]="{'pi-chevron-down': !isExpanded, 'pi-chevron-up': isExpanded}"></i>
-  </div>
-  <div class="category-content" [ngClass]="{'expanded': isExpanded}">
+  <h3 (click)="toggleCategories()">
+    Categories
+    <i [ngClass]="isCategoriesVisible ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
+  </h3>
+
+  <div *ngIf="isCategoriesVisible">
     <div *ngFor="let category of categories" class="field-checkbox">
       <p-checkbox
         [(ngModel)]="selectedCategories"

@@ -1,28 +1,34 @@
 package com.example.controller;
 
+import com.example.dto.CategoryDTO;
 import com.example.model.Category;
-import com.example.service.CategoryService;
+import com.example.model.Department;
+import com.example.repository.CategoryRepository;
+import com.example.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryRepository categoryRepository;
 
-    @PostMapping("/add")
-    public Category addCategory(@RequestBody Category category) {
-        return categoryService.addCategory(category);
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @PostMapping
+    public ResponseEntity<Category> createCategory(@RequestBody CategoryDTO categoryDTO) {
+        Category category = new Category();
+        category.setName(categoryDTO.getName());
+        category.setDescription(categoryDTO.getDescription());
+
+        Department department = departmentRepository.findById(categoryDTO.getDepartmentId())
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+        category.setDepartment(department);
+
+        return ResponseEntity.ok(categoryRepository.save(category));
     }
-
-    @GetMapping("/list")
-    public List<Category> getAllCategory() {
-        return categoryService.getAllCategories();
-    }
-
 }

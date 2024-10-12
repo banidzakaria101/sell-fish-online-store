@@ -1,5 +1,5 @@
-export class Category {
-  id!: number;
-  name!: string;
-  description!: string;
+export interface Category {
+  id: number;
+  name: string; 
+  departmentId: number;
 }

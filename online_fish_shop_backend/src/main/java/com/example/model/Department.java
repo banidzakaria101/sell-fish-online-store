@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,14 +23,7 @@ public class Category {
     @Column(unique = true, nullable = false)
     private String name;
 
-    @Column(length = 1000)
-    private String description;
-
     @JsonIgnore
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)  // One category can have many products
-    private Set<Product> products;
-
-    @ManyToOne
-    @JoinColumn(name = "department_id", nullable = false)  // Foreign key to Department
-    private Department department;  // Each category belongs to one department
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private Set<Category> categories;
 }

@@ -50,6 +50,12 @@ import { HomeSidenavComponent } from './home/home-sidenav/home-sidenav.component
 import { CategorySidebarComponent } from './home/category-sidebar/category-sidebar.component';
 import { ProductSearchComponent } from './product/product-search/product-search.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { UserBasketComponent } from './user-dashboard/user-basket/user-basket.component';
+import { UserFavoritesComponent } from './user-dashboard/user-favorites/user-favorites.component';
+import { UserOrdersComponent } from './user-dashboard/user-orders/user-orders.component';
+import { NavigationComponent } from './user-dashboard/navigation/navigation.component';
 
 
 @NgModule({
@@ -80,6 +86,11 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     HomeSidenavComponent,
     ProductSearchComponent,
     UserDashboardComponent,
+    UserManagementComponent,
+    UserBasketComponent,
+    UserFavoritesComponent,
+    UserOrdersComponent,
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
@@ -111,7 +122,9 @@ import { UserDashboardComponent } from './user-dashboard/user-dashboard.componen
     TableModule,
     InputTextModule,
     CheckboxModule,
-    ButtonModule
+    ButtonModule,
+    DropdownModule,
+    TableModule
 ],
   providers: [
     provideAnimationsAsync()

@@ -1,37 +1,25 @@
 package com.example.service;
 
 import com.example.model.Category;
+import com.example.model.Department;
 import com.example.repository.CategoryRepository;
+import com.example.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class CategoryService {
 
     @Autowired
-    private CategoryRepository categoryRepo;
+    private CategoryRepository categoryRepository;
 
-    public List<Category> getAllCategories() {
-        return categoryRepo.findAll();
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    public Category createCategory(Category category, Long departmentId) {
+        Department department = departmentRepository.findById(departmentId)
+                .orElseThrow(() -> new RuntimeException("Department not found"));
+        category.setDepartment(department);
+        return categoryRepository.save(category);
     }
-
-    public Category findCategoryByName(String categoryName) {
-        return categoryRepo.findCategoryByName(categoryName);
-    }
-
-    public Category addCategory(Category category) {
-        return categoryRepo.save(category);
-    }
-
-    public Category updateCategory(Category category, Long id) {
-        Category updatedCategory = categoryRepo.findById(id).get();
-
-        return categoryRepo.save(category);
-    }
-
-
-
-
 }

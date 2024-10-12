@@ -1,0 +1,27 @@
+<div class="card">
+  <p-table [value]="customers" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+           [tableStyle]="{'min-width': '60rem'}"
+           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Customer Name</th>
+        <th>Phone Number</th>
+        <th>Total Orders</th>
+        <th>Total Amount</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-customer>
+      <tr>
+        <td>{{ customer.username }}</td>
+        <td>{{ customer.phoneNumber }}</td>
+        <td>{{ getTotalOrders(customer) }}</td>
+        <td>{{ getTotalAmount(customer) | currency }}</td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        Total Customers: {{ customers.length }}
+      </div>
+    </ng-template>
+  </p-table>
+</div>

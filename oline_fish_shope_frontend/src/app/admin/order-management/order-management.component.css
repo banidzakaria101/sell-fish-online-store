@@ -1,0 +1,43 @@
+:host ::ng-deep {
+  .p-datatable {
+    .p-datatable-header {
+      background: #f8f9fa;
+    }
+
+    .p-datatable-thead > tr > th {
+      background: #e9ecef;
+    }
+
+    .p-datatable-tbody > tr:nth-child(even) {
+      background: #f8f9fa;
+    }
+
+    .p-datatable-tbody > tr > td {
+      padding: 0.75rem 1rem;
+    }
+
+    .p-dropdown {
+      width: 100%;
+    }
+  }
+
+  .p-button {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .p-inputtext {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
