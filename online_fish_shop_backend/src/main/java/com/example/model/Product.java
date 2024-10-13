@@ -36,7 +36,7 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    private String image;
+    private String imagePath;
 
     private Boolean available;
 

@@ -18,6 +18,9 @@ public class DepartmentController {
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @PostMapping
     public ResponseEntity<Department> createDepartment(@RequestBody DepartmentDTO departmentDTO) {
         Department department = new Department();
@@ -25,21 +28,10 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentRepository.save(department));
     }
 
-    @Autowired
-    private CategoryRepository categoryRepository;
 
     @GetMapping("/departments")
     public List<Department> getAllDepartments() {
         return departmentRepository.findAll();
     }
 
-    @GetMapping("/categories")
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
-    }
-
-    @GetMapping("/departments/{id}/categories")
-    public List<Category> getCategoriesByDepartmentId(@PathVariable Long id) {
-        return categoryRepository.findByDepartmentId(id);
-    }
 }

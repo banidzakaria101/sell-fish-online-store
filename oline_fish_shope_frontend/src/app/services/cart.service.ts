@@ -16,12 +16,23 @@ export class CartService {
   }
 
   addToCart(product: Product): void {
-    this.cartItems.push(product);
+    const existingProduct = this.cartItems.find(item => item.id === product.id);
+    if (existingProduct) {
+      existingProduct.quantity! += 1; // Increment quantity
+    } else {
+      product.quantity = 1; // Initialize quantity for new product
+      this.cartItems.push(product);
+    }
     this.cartItemsSubject.next(this.cartItems);
   }
 
   removeFromCart(product: Product): void {
-    this.cartItems = this.cartItems.filter(item => item.id !== product.id);
+    const existingProduct = this.cartItems.find(item => item.id === product.id);
+    if (existingProduct && existingProduct.quantity! > 1) {
+      existingProduct.quantity! -= 1; // Decrement quantity
+    } else {
+      this.cartItems = this.cartItems.filter(item => item.id !== product.id);
+    }
     this.cartItemsSubject.next(this.cartItems);
   }
 
@@ -35,6 +46,10 @@ export class CartService {
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, product) => total + product.price, 0);
+    return this.cartItems.reduce((total, product) => total + (product.price * (product.quantity || 1)), 0);
+  }
+
+  isProductInCart(productId: number): boolean {
+    return this.cartItems.some(item => item.id === productId);
   }
 }

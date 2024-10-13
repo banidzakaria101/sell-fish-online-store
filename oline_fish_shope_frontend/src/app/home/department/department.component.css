@@ -1,41 +1,30 @@
 .department-sidebar {
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .department-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background-color: #f8f9fa;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.department-item {
+  padding: 10px;
   cursor: pointer;
-  user-select: none;
 }
 
-.department-header h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
+.department-item:hover {
+  background-color: #f0f0f0;
 }
 
-.department-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out;
+.category-list {
+  margin-top: 10px;
+  border-top: 1px solid #ccc;
 }
 
-.department-content.expanded {
-  max-height: 1000px; 
+.category-item {
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
-.field-checkbox {
-  padding: 8px 16px;
-}
-
-.pi {
-  font-size: 18px;
-  color: #555;
+.category-item:hover {
+  background-color: #e0e0e0;
 }

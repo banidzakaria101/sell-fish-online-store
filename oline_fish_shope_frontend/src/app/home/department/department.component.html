@@ -1,16 +1,28 @@
 <div class="department-sidebar">
-  <div class="department-header" (click)="toggleDepartments()">
+  <div class="department-header">
     <h3>Departments</h3>
-    <i class="pi" [ngClass]="{'pi-chevron-down': !isExpanded, 'pi-chevron-up': isExpanded}"></i>
   </div>
-  <div class="department-content" [ngClass]="{'expanded': isExpanded}">
-    <div *ngFor="let department of departments" class="field-checkbox">
-      <p-checkbox
-        [(ngModel)]="selectedDepartments"
-        [label]="department"
-        name="departmentGroup"
-        [value]="department">
-      </p-checkbox>
-    </div>
+
+  <div *ngFor="let department of departments"
+       class="department-item"
+       (mouseenter)="onHoverDepartment(department.id)"
+       (mouseleave)="onLeaveDepartment()"
+       (click)="onClickDepartment(department.id)">
+    {{ department.name }}
+  </div>
+
+  <div *ngIf="loading">Loading departments...</div>
+  <div *ngIf="loadingCategories">Loading categories...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <div class="category-list" *ngIf="categories.length > 0">
+    <h4>Select a Category:</h4>
+    <ul>
+      <li *ngFor="let category of categories"
+          class="category-item"
+          (click)="onSelectCategory(category.id)">
+        {{ category.name }}
+      </li>
+    </ul>
   </div>
 </div>

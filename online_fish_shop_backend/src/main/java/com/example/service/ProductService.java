@@ -1,13 +1,19 @@
 package com.example.service;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.example.model.Category;
 import com.example.model.Product;
 import com.example.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -16,8 +22,24 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product addProduct(Product product) {
-        return productRepository.save(product);
+    @Autowired
+    private Cloudinary cloudinary;
+
+    public ResponseEntity<Product> saveProduct(Product product, MultipartFile file) throws IOException {
+        // Upload the image to Cloudinary
+        String imageUrl = uploadImageToCloudinary(file);
+
+        // Set image URL and save the product
+        product.setImagePath(imageUrl);
+        Product createdProduct = productRepository.save(product);
+        return ResponseEntity.ok(createdProduct);
+    }
+
+
+
+    private String uploadImageToCloudinary(MultipartFile file) throws IOException {
+        Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+        return (String) uploadResult.get("secure_url");
     }
 
     public void deleteProduct(Long productId) {
@@ -26,11 +48,15 @@ public class ProductService {
 
     public Product updateProduct(Long productId, Product product) {
         Optional<Product> productOptional = productRepository.findById(productId);
-
-            productOptional.get().setPrice(product.getPrice());
-            productOptional.get().setImage(product.getImage());
-            productOptional.get().setStock(product.getStock());
-            return productRepository.save(productOptional.get());
+        if (productOptional.isPresent()) {
+            Product existingProduct = productOptional.get();
+            existingProduct.setPrice(product.getPrice());
+            existingProduct.setImagePath(product.getImagePath()); // Ensure this method exists
+            existingProduct.setStock(product.getStock());
+            return productRepository.save(existingProduct);
+        } else {
+            throw new RuntimeException("Product not found");
+        }
     }
 
     public List<Product> lisAllProducts() {
@@ -42,25 +68,21 @@ public class ProductService {
     }
 
     public Product getProductById(Long productId) {
-        Optional<Product> productOptional = productRepository.findById(productId);
-        if (productOptional.isPresent()) {
-            return productOptional.get();
-        }else {
-            throw new RuntimeException("Product not found");
-        }
+        return productRepository.findById(productId)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     public List<Product> filterProducts(Double minPrice, Double maxPrice, Category category, Boolean available) {
         Specification<Product> spec = Specification.where(null);
 
         if (minPrice != null) {
-            spec = spec.and((root, query, criteriaBuilder ) ->
+            spec = spec.and((root, query, criteriaBuilder) ->
                     criteriaBuilder.greaterThanOrEqualTo(root.get("price"), minPrice));
         }
 
         if (maxPrice != null) {
             spec = spec.and((root, query, criteriaBuilder) ->
-                    criteriaBuilder.lessThanOrEqualTo(root.get("price"),maxPrice));
+                    criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice));
         }
 
         if (available != null) {
@@ -73,10 +95,12 @@ public class ProductService {
                     criteriaBuilder.equal(root.get("category"), category));
         }
 
-        return productRepository.findAll();
+        return productRepository.findAll(spec); // Update to use the Specification
     }
 
     public List<Product> getProductsByCategory(Long id) {
-        return  productRepository.findByCategoryId(id);
+        return productRepository.findByCategoryId(id);
     }
+
+
 }

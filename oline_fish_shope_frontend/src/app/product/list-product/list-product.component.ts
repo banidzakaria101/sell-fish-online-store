@@ -1,8 +1,8 @@
-// list-product.component.ts
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-list-product',
@@ -12,8 +12,10 @@ import { Product } from '../../models/product.model';
 export class ListProductComponent implements OnInit {
   @Input() products: Product[] = [];
 
+  // Change cartService from private to public
   constructor(
     private productService: ProductService,
+    public cartService: CartService, // Change here
     private router: Router
   ) {}
 
@@ -45,15 +47,15 @@ export class ListProductComponent implements OnInit {
       const product = this.products.find(p => p.id === id);
       if (product) {
         product.isFavorite = !product.isFavorite;
-
       }
     }
   }
 
-  addToCart(event: Event, product: Product): void {
-    event.stopPropagation();
-    if (product.id) {
-      console.log('Adding to cart:', product);
+  toggleBasket(product: Product): void {
+    if (this.cartService.isProductInCart(product.id)) {
+      this.cartService.removeFromCart(product);
+    } else {
+      this.cartService.addToCart(product);
     }
   }
 }

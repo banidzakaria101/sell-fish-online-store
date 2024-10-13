@@ -26,55 +26,38 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void createDepartmentsAndCategories() {
-        // Create departments
-        Department caviarRoe = new Department();
-        caviarRoe.setName("Caviar & Roe");
+        // Define an array of department names
+        String[] departmentNames = {
+                "Caviar & Roe",
+                "Clams / Oysters",
+                "Crab / Lobster / Shrimp",
+                "Curated By Fulton",
+                "Fish",
+                "Mussels / Scallops",
+                "Octopus / Squid",
+                "Pantry / Merchandise",
+                "Prepared / Ready To Eat"
+        };
 
-        Department clamsOysters = new Department();
-        clamsOysters.setName("Clams / Oysters");
-
-        Department crabLobsterShrimp = new Department();
-        crabLobsterShrimp.setName("Crab / Lobster / Shrimp");
-
-        Department curatedByFulton = new Department();
-        curatedByFulton.setName("Curated By Fulton");
-
-        Department fish = new Department();
-        fish.setName("Fish");
-
-        Department musselsScallops = new Department();
-        musselsScallops.setName("Mussels / Scallops");
-
-        Department octopusSquid = new Department();
-        octopusSquid.setName("Octopus / Squid");
-
-        Department pantryMerchandise = new Department();
-        pantryMerchandise.setName("Pantry / Merchandise");
-
-        Department preparedReadyToEat = new Department();
-        preparedReadyToEat.setName("Prepared / Ready To Eat");
-
-        // Save departments
-        departmentRepository.save(caviarRoe);
-        departmentRepository.save(clamsOysters);
-        departmentRepository.save(crabLobsterShrimp);
-        departmentRepository.save(curatedByFulton);
-        departmentRepository.save(fish);
-        departmentRepository.save(musselsScallops);
-        departmentRepository.save(octopusSquid);
-        departmentRepository.save(pantryMerchandise);
-        departmentRepository.save(preparedReadyToEat);
+        // Create and save departments if they don't already exist
+        for (String name : departmentNames) {
+            if (!departmentRepository.findByName(name).isPresent()) {
+                Department department = new Department();
+                department.setName(name);
+                departmentRepository.save(department);
+            }
+        }
 
         // Create and save categories for each department
-        saveCategoriesForDepartment(caviarRoe, new String[]{"Caviar", "Anchovies", "Smoked Seafood"});
-        saveCategoriesForDepartment(clamsOysters, new String[]{"Clams", "Oysters"});
-        saveCategoriesForDepartment(crabLobsterShrimp, new String[]{"Crab", "Lobster", "Shrimp", "Mussels", "Squid"});
-        saveCategoriesForDepartment(curatedByFulton, new String[]{"Curated By Fulton", "Bundles"});
-        saveCategoriesForDepartment(fish, new String[]{"Cod", "Halibut", "Trout", "Salmon", "Tuna", "Swordfish", "Snapper"});
-        saveCategoriesForDepartment(musselsScallops, new String[]{"Mussels", "Scallops"});
-        saveCategoriesForDepartment(octopusSquid, new String[]{"Octopus", "Squid"});
-        saveCategoriesForDepartment(pantryMerchandise, new String[]{"Books", "Kitchen Tools", "Sauces/Spices"});
-        saveCategoriesForDepartment(preparedReadyToEat, new String[]{"Burgers", "Cakes", "Bundles"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Caviar & Roe").get(), new String[]{"Caviar", "Anchovies", "Smoked Seafood"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Clams / Oysters").get(), new String[]{"Clams", "Oysters"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Crab / Lobster / Shrimp").get(), new String[]{"Crab", "Lobster", "Shrimp", "Mussels", "Squid"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Curated By Fulton").get(), new String[]{"Curated By Fulton", "Bundles"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Fish").get(), new String[]{"Cod", "Halibut", "Trout", "Salmon", "Tuna", "Swordfish", "Snapper"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Mussels / Scallops").get(), new String[]{"Mussels", "Scallops"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Octopus / Squid").get(), new String[]{"Octopus", "Squid"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Pantry / Merchandise").get(), new String[]{"Books", "Kitchen Tools", "Sauces/Spices"});
+        saveCategoriesForDepartment(departmentRepository.findByName("Prepared / Ready To Eat").get(), new String[]{"Burgers", "Cakes", "Bundles"});
     }
 
     private void saveCategoriesForDepartment(Department department, String[] categoryNames) {
@@ -85,7 +68,7 @@ public class DataInitializer implements CommandLineRunner {
 
             Category category = new Category();
             category.setName(categoryName);
-            category.setDepartment(department); // Set the department for the category
+            category.setDepartment(department);
             categoryRepository.save(category);
         }
     }

@@ -92,4 +92,9 @@ export class AuthService {
    getCurrentUser(): any {
     return this.currentUserSubject.value;
   }
+
+  getAdminId(): number | null {
+    const currentUser = this.currentUserSubject.value;
+    return currentUser?.adminId || null; 
+  }
 }

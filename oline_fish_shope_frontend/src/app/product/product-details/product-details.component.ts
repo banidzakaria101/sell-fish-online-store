@@ -10,7 +10,7 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-  product!: Product;
+  product!: Product; // Ensure this is properly initialized
   quantity: number = 1; // Default quantity
 
   constructor(
@@ -31,14 +31,17 @@ export class ProductDetailsComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error loading product details:', error);
+        // Optionally add user feedback here (e.g., a notification)
       }
     });
   }
 
   addToCart(): void {
-    const productToAdd = { ...this.product, quantity: this.quantity }; // Include quantity
-    this.cartService.addToCart(productToAdd);
-    console.log('Product added to cart:', productToAdd);
+    if (this.product) {
+      const productToAdd = { ...this.product, quantity: this.quantity }; // Include quantity
+      this.cartService.addToCart(productToAdd);
+      console.log('Product added to cart:', productToAdd);
+    }
   }
 
   increaseQuantity(): void {

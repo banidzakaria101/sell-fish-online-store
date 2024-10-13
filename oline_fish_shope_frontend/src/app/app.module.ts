@@ -26,6 +26,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ChipsModule } from 'primeng/chips';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TableModule } from 'primeng/table';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 
 
 
@@ -124,7 +126,8 @@ import { NavigationComponent } from './user-dashboard/navigation/navigation.comp
     CheckboxModule,
     ButtonModule,
     DropdownModule,
-    TableModule
+    TableModule,
+    RadioButtonModule,
 ],
   providers: [
     provideAnimationsAsync()

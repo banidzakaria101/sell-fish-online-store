@@ -10,7 +10,7 @@ import { Basket } from '../../models/basket.model';
 })
 export class UserBasketComponent implements OnInit {
   basket: Basket | null = null;
-  customerId: number = 1; // Set this to the current user's ID (fetch from authentication context)
+  customerId: number = 1;
 
   constructor(private basketService: BasketService) {}
 
@@ -21,7 +21,7 @@ export class UserBasketComponent implements OnInit {
   loadBasket() {
     this.basketService.getBasket(this.customerId).subscribe(
       basket => {
-        this.basket = basket; // Update local basket state
+        this.basket = basket;
       },
       error => {
         console.error('Error fetching basket:', error);
@@ -32,7 +32,7 @@ export class UserBasketComponent implements OnInit {
   removeFromBasket(productId: number) {
     this.basketService.removeFromBasket(this.customerId, productId).subscribe(
       updatedBasket => {
-        this.basket = updatedBasket; // Update with the new basket state
+        this.basket = updatedBasket;
       },
       error => {
         console.error('Error removing product from basket:', error);
@@ -43,7 +43,7 @@ export class UserBasketComponent implements OnInit {
   clearBasket() {
     this.basketService.clearBasket(this.customerId).subscribe(
       updatedBasket => {
-        this.basket = updatedBasket; 
+        this.basket = updatedBasket;
       },
       error => {
         console.error('Error clearing basket:', error);

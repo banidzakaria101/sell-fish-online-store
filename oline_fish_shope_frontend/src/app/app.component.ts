@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'oline_fish_shope_frontend';
+
+  selectedDepartmentId: number | null = null;
+
+  clearAllFilters() {
+    this.selectedDepartmentId = null;
+  }
+
+  onDepartmentSelected(departmentId: number): void {
+    this.selectedDepartmentId = departmentId;
+  }
+
 }

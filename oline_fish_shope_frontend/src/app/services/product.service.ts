@@ -19,7 +19,7 @@ export class ProductService {
     });
   }
 
-  addProduct(product: Product): Observable<Product> {
+  addProduct(product: FormData): Observable<Product> {
     const token = this.jwtService.getToken();
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`

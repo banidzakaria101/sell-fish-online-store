@@ -1,26 +1,17 @@
-<!-- list-product.component.html -->
 <div *ngIf="products.length > 0; else noProducts" class="product-grid">
-  <div *ngFor="let product of products"
-       class="product-card"
-       (click)="viewProduct(product.id)">
+  <div *ngFor="let product of products" class="product-card">
     <div class="product-image">
-      <img [src]="product.image || 'assets/images/default-fish.jpg'"
-           [alt]="product.name">
-      <button class="favorite-btn"
-              (click)="toggleFavorite($event, product.id)"
-              [class.active]="product.isFavorite">
-        <i class="far" [class.fa-heart]="!product.isFavorite" [class.fas]="product.isFavorite"></i>
-      </button>
+      <a [routerLink]="['/product', product.id]">
+        <img [src]="product.imagePath || 'assets/images/default-fish.jpg'" [alt]="product.name" class="product-img">
+      </a>
     </div>
     <div class="product-info">
       <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-description">{{ product.description }}</p>
       <div class="price-action">
         <span class="price">${{ product.price.toFixed(2) }}</span>
-        <button class="add-btn"
-                (click)="addToCart($event, product)"
-                [disabled]="!product.available || product.stock === 0">
-          <i class="fas fa-plus"></i>
+        <button (click)="toggleBasket(product)">
+          {{ cartService.isProductInCart(product.id) ? '-' : 'Add' }}
         </button>
       </div>
     </div>

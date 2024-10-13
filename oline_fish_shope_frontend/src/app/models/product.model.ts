@@ -2,14 +2,17 @@ import { Category } from "./category.model";
 
 export interface Product {
   isFavorite: any;
-  id?: number;
+  id: number;
   name: string;
-  description?: string;
+  description: string;
   price: number;
   weight: number;
   stock: number;
-  image?: string;
-  available?: boolean;
+  imagePath: string;
+  available: boolean;
   category: Category;
+  adminId: number;
+  quantity: number;
+
 
 }
