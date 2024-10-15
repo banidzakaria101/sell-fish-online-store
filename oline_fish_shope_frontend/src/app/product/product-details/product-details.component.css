@@ -1,149 +1,99 @@
-/* product-details.component.css */
+/* Product Details Component Styles */
 
-:host ::ng-deep {
-  /* General styles */
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
+
+
+.grid {
+  display: flex;
+}
+
+.col-12 {
+  flex: 0 0 50%;
+
+}
+
+.image-container {
+  text-align: center;
+}
+
+.product-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.price-tag {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.description {
+  margin-bottom: 20px;
+}
+
+.shipping-info {
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.purchase-options {
+  margin-bottom: 20px;
+}
+
+.quantity-cart {
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .col-md-5 {
+    flex: 0 0 41.66667%;
   }
 
-  /* Breadcrumb styles */
-  .p-breadcrumb {
-    background-color: transparent;
-    border: none;
-    padding: 0.5rem 0;
-    margin-bottom: 2rem;
-  }
-
-  /* Grid styles */
-  .p-grid {
-    display: flex;
-    flex-wrap: wrap;
-    margin: -0.5rem;  /* Negative margin to counteract padding on columns */
-  }
-
-  .p-col-12 {
-    padding: 0.5rem;
-  }
-
-  /* Side by side layout */
-  @media screen and (min-width: 768px) {
-    .p-md-6 {
-      flex: 0 0 50%;
-      max-width: 50%;
-    }
-  }
-
-  /* Image styles */
-  .p-image {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    height: 100%;  /* Make image container full height */
-
-    img {
-      object-fit: cover;
-      height: 100%;
-      width: 100%;
-    }
-  }
-
-  /* Text styles */
-  h2 {
-    color: #1e293b;
-    margin-top: 0;  /* Remove top margin to align with image */
-  }
-
-  h3 {
-    color: #3b82f6;
-  }
-
-  p {
-    color: #64748b;
-    line-height: 1.6;
-  }
-
-  /* Tag styles */
-  .p-tag {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.5rem;
-  }
-
-  /* Input group styles */
-  .p-inputgroup {
-    .p-inputnumber {
-      flex: 1;
-    }
-
-    .p-inputtext {
-      text-align: center;
-    }
-
-    .p-button {
-      width: 3rem;
-    }
-  }
-
-  /* Button styles */
-  .p-button-primary {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
-
-    &:hover {
-      background-color: #2563eb;
-      border-color: #2563eb;
-    }
-  }
-
-  /* Message styles */
-  .p-message {
-    margin-top: 1rem;
-    border-radius: 8px;
-
-    .p-message-wrapper {
-      padding: 1rem;
-    }
-
-    .p-message-icon {
-      font-size: 1.5rem;
-    }
+  .col-md-7 {
+    flex: 0 0 58.33333%;
   }
 }
 
-/* Additional custom styles */
-.mb-4 {
-  margin-bottom: 1rem;
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex: 0 0 33.33333%;
+  }
+
+  .col-lg-8 {
+    flex: 0 0 66.66667%;
+  }
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+/* PrimeNG specific adjustments */
+:host ::ng-deep .p-inputnumber {
+  width: 100px;
 }
 
-.w-full {
+:host ::ng-deep .p-button {
+  margin-left: 10px;
+}
+
+:host ::ng-deep .p-dropdown {
   width: 100%;
+  max-width: 300px;
 }
 
-.font-bold {
-  font-weight: 700;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-/* Ensure content is aligned at the top on larger screens */
-@media screen and (min-width: 768px) {
-  .p-grid {
-    align-items: flex-start;
-  }
+:host ::ng-deep .p-radiobutton {
+  margin-right: 8px;
 }

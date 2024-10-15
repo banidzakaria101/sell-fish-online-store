@@ -12,10 +12,12 @@ import { Category } from '../../models/category.model';
 export class DepartmentComponent implements OnInit {
   departments: Department[] = [];
   categories: Category[] = [];
-  selectedDepartmentId: number | null = null; // Track selected department
+  selectedDepartmentId: number | null = null;
   loading: boolean = true;
   loadingCategories: boolean = false;
   error: string | null = null;
+  isDepartmentsVisible: boolean = true;
+  selectedCategoryId: number | null = null; 
 
   constructor(
     private departmentService: DepartmentService,
@@ -40,46 +42,33 @@ export class DepartmentComponent implements OnInit {
     );
   }
 
-  onHoverDepartment(departmentId: number): void {
-    if (this.selectedDepartmentId === null) {
-      this.loadingCategories = true;
-      this.categoryService.getCategoriesByDepartment(departmentId).subscribe(
-        (data) => {
-          this.categories = data; // Load categories for the hovered department
-          this.loadingCategories = false;
-        },
-        (error) => {
-          console.error('Error fetching categories for department:', error);
-          this.error = 'Failed to load categories';
-          this.loadingCategories = false;
-        }
-      );
-    }
+  toggleDepartments(): void {
+    this.isDepartmentsVisible = !this.isDepartmentsVisible;
   }
 
-  onClickDepartment(departmentId: number): void {
-    this.selectedDepartmentId = departmentId; // Fix the selected department
-    this.loadingCategories = true;
-    this.categoryService.getCategoriesByDepartment(departmentId).subscribe(
-      (data) => {
-        this.categories = data; // Load categories for the selected department
-        this.loadingCategories = false;
-      },
-      (error) => {
-        console.error('Error fetching categories for department:', error);
-        this.error = 'Failed to load categories';
-        this.loadingCategories = false;
-      }
-    );
+  onToggleDepartment(departmentId: number): void {
+    this.selectedDepartmentId = this.selectedDepartmentId === departmentId ? null : departmentId;
+    this.loadCategories(this.selectedDepartmentId);
   }
 
   onSelectCategory(categoryId: number): void {
-    console.log('Selected Category ID:', categoryId);
-    // Handle category selection logic here
+    this.selectedCategoryId = this.selectedCategoryId === categoryId ? null : categoryId;
   }
 
-  onLeaveDepartment(): void {
-    if (this.selectedDepartmentId === null) {
+  loadCategories(departmentId: number | null): void {
+    if (departmentId) {
+      this.loadingCategories = true;
+      this.categoryService.getCategoriesByDepartment(departmentId).subscribe(
+        (data) => {
+          this.categories = data;
+          this.loadingCategories = false;
+        },
+        (error) => {
+          console.error('Error fetching categories:', error);
+          this.loadingCategories = false;
+        }
+      );
+    } else {
       this.categories = [];
     }
   }

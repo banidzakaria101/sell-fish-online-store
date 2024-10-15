@@ -19,6 +19,7 @@ export class ProductDetailsComponent implements OnInit {
   home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
   deliveryOptions: any[];
   selectedDeliveryOption: any;
+  purchaseOption: string = 'subscription'; 
 
   constructor(
     private route: ActivatedRoute,

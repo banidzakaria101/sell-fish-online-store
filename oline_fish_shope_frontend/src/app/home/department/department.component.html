@@ -1,14 +1,11 @@
-<div class="department-sidebar">
-  <div class="department-header">
-    <h3>Departments</h3>
-  </div>
-
-  <div *ngFor="let department of departments"
-       class="department-item"
-       (mouseenter)="onHoverDepartment(department.id)"
-       (mouseleave)="onLeaveDepartment()"
-       (click)="onClickDepartment(department.id)">
-    {{ department.name }}
+<div class="department-content" [ngClass]="{'expanded': isDepartmentsVisible}">
+  <div *ngFor="let department of departments" class="department-item">
+    <label>
+      <input type="radio"
+             (change)="onToggleDepartment(department.id)"
+             [checked]="selectedDepartmentId === department.id" />
+      {{ department.name }}
+    </label>
   </div>
 
   <div *ngIf="loading">Loading departments...</div>
@@ -18,10 +15,13 @@
   <div class="category-list" *ngIf="categories.length > 0">
     <h4>Select a Category:</h4>
     <ul>
-      <li *ngFor="let category of categories"
-          class="category-item"
-          (click)="onSelectCategory(category.id)">
-        {{ category.name }}
+      <li *ngFor="let category of categories" class="category-item">
+        <label>
+          <input type="radio"
+                 (change)="onSelectCategory(category.id)"
+                 [checked]="selectedCategoryId === category.id" />
+          {{ category.name }}
+        </label>
       </li>
     </ul>
   </div>
