@@ -1,115 +1,149 @@
-.product-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+/* product-details.component.css */
+
+:host ::ng-deep {
+  /* General styles */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Breadcrumb styles */
+  .p-breadcrumb {
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 0;
+    margin-bottom: 2rem;
+  }
+
+  /* Grid styles */
+  .p-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -0.5rem;  /* Negative margin to counteract padding on columns */
+  }
+
+  .p-col-12 {
+    padding: 0.5rem;
+  }
+
+  /* Side by side layout */
+  @media screen and (min-width: 768px) {
+    .p-md-6 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  /* Image styles */
+  .p-image {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 100%;  /* Make image container full height */
+
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  /* Text styles */
+  h2 {
+    color: #1e293b;
+    margin-top: 0;  /* Remove top margin to align with image */
+  }
+
+  h3 {
+    color: #3b82f6;
+  }
+
+  p {
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* Tag styles */
+  .p-tag {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  /* Input group styles */
+  .p-inputgroup {
+    .p-inputnumber {
+      flex: 1;
+    }
+
+    .p-inputtext {
+      text-align: center;
+    }
+
+    .p-button {
+      width: 3rem;
+    }
+  }
+
+  /* Button styles */
+  .p-button-primary {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+
+    &:hover {
+      background-color: #2563eb;
+      border-color: #2563eb;
+    }
+  }
+
+  /* Message styles */
+  .p-message {
+    margin-top: 1rem;
+    border-radius: 8px;
+
+    .p-message-wrapper {
+      padding: 1rem;
+    }
+
+    .p-message-icon {
+      font-size: 1.5rem;
+    }
+  }
 }
 
-.breadcrumb {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #555;
+/* Additional custom styles */
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
-.product-details {
-  display: flex;
-  gap: 20px;
+.mb-6 {
+  margin-bottom: 1.5rem;
 }
 
-.product-image {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
+.w-full {
+  width: 100%;
 }
 
-.product-image img {
-  max-width: 100%;
-  height: auto;
+.font-bold {
+  font-weight: 700;
 }
 
-.product-info {
-  flex: 2;
+.font-semibold {
+  font-weight: 600;
 }
 
-.product-name {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 10px 0;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
-.price-container {
-  display: flex;
-  align-items: center;
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
-.save-badge {
-  background-color: #ffcc00;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.price {
-  font-size: 20px;
-  color: #333;
-}
-
-.product-description {
-  margin: 10px 0;
-  color: #666;
-}
-
-.quantity-selector {
-  display: flex;
-  align-items: center;
-  margin: 10px 0;
-}
-
-.quantity-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.quantity-input {
-  width: 50px;
-  text-align: center;
-  margin: 0 5px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.add-to-cart-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #218838;
-}
-
-.shipping-info {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #555;
-}
-
-.shipping-icon {
-  width: 20px;
-  vertical-align: middle;
-  margin-right: 5px;
+/* Ensure content is aligned at the top on larger screens */
+@media screen and (min-width: 768px) {
+  .p-grid {
+    align-items: flex-start;
+  }
 }

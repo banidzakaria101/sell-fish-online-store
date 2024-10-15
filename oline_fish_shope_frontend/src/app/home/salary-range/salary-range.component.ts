@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./salary-range.component.css']
 })
 export class SalaryRangeComponent {
-  rangeValues: number[] = [10, 900];
+  salaryRange: number[] = [20, 600];
+  isExpanded: boolean = true;
 }

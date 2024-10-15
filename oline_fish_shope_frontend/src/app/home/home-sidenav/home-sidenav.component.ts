@@ -14,7 +14,7 @@ export class HomeSidenavComponent {
 
   onDepartmentSelected(departmentId: number): void {
     this.selectedDepartmentId = departmentId;
-    console.log('Selected Department ID in HomeSidenav:', this.selectedDepartmentId); 
+    console.log('Selected Department ID in HomeSidenav:', this.selectedDepartmentId);
 
   }
 }

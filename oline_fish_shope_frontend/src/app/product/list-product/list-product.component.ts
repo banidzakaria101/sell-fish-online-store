@@ -11,11 +11,12 @@ import { CartService } from '../../services/cart.service';
 })
 export class ListProductComponent implements OnInit {
   @Input() products: Product[] = [];
+  @Input() selectedCategoryId: number | null = null; // Accept selected category ID
+  filteredProducts: Product[] = [];
 
-  // Change cartService from private to public
   constructor(
     private productService: ProductService,
-    public cartService: CartService, // Change here
+    public cartService: CartService,
     private router: Router
   ) {}
 
@@ -23,16 +24,30 @@ export class ListProductComponent implements OnInit {
     this.loadProducts();
   }
 
+  ngOnChanges(): void {
+    this.filterProductsByCategory(this.selectedCategoryId); // Filter when category ID changes
+  }
+
   loadProducts(): void {
     this.productService.listProducts().subscribe({
       next: (products) => {
         this.products = products;
+        this.filteredProducts = products;
         console.log('Products loaded:', products);
       },
       error: (error) => {
         console.error('Error loading products:', error);
       }
     });
+  }
+
+  filterProductsByCategory(selectedCategoryId: number | null): void {
+    if (selectedCategoryId) {
+      console.log(selectedCategoryId);
+      this.filteredProducts = this.products.filter(product => product.category?.id === selectedCategoryId);
+    } else {
+      this.filteredProducts = this.products; 
+    }
   }
 
   viewProduct(id: number | undefined): void {

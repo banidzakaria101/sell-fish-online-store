@@ -4,10 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { BoardAdminComponent } from './admin/board-admin/board-admin.component';
-import { BoardUserComponent } from './board-user/board-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './authentication/login/login.component';
@@ -27,6 +25,11 @@ import { ChipsModule } from 'primeng/chips';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TableModule } from 'primeng/table';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { ImageModule } from 'primeng/image';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MessageModule } from 'primeng/message';
+import { TagModule } from 'primeng/tag';
 
 
 
@@ -58,19 +61,23 @@ import { UserBasketComponent } from './user-dashboard/user-basket/user-basket.co
 import { UserFavoritesComponent } from './user-dashboard/user-favorites/user-favorites.component';
 import { UserOrdersComponent } from './user-dashboard/user-orders/user-orders.component';
 import { NavigationComponent } from './user-dashboard/navigation/navigation.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { UserNavbarComponent } from './user-dashboard/user-navbar/user-navbar.component';
+import { SidNavComponent } from './home/sid-nav/sid-nav.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    RegisterComponent,
     AdminListProductComponent,
     SideNavComponent,
     CategorySidebarComponent,
     LoginComponent,
-    RegisterComponent,
     ProfileComponent,
     BoardAdminComponent,
-    BoardUserComponent,
     AddProductComponent,
     ListProductComponent,
     HomePageComponent,
@@ -93,6 +100,11 @@ import { NavigationComponent } from './user-dashboard/navigation/navigation.comp
     UserFavoritesComponent,
     UserOrdersComponent,
     NavigationComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    UserNavbarComponent,
+    SidNavComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -128,6 +140,15 @@ import { NavigationComponent } from './user-dashboard/navigation/navigation.comp
     DropdownModule,
     TableModule,
     RadioButtonModule,
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    BreadcrumbModule,
+    ButtonModule,
+    ImageModule,
+    InputNumberModule,
+    MessageModule,
+    TagModule,
 ],
   providers: [
     provideAnimationsAsync()

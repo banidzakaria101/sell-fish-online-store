@@ -7,15 +7,12 @@ export const authGuard: CanActivateFn = (_route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-  // Check if the user is logged in
   if (authService.isLoggedIn()) {
-    // Check if the user has admin role
     const role = authService.getCurrentUserRole();
     if (role === Role.ADMIN) {
-      return true; // Allow access to admin dashboard
+      return true;
     } else {
-      // Redirect to user dashboard or home page if not admin
-      router.navigate(['/user-dashboard']); // Change this to your desired redirect
+      router.navigate(['/user-dashboard']);
       return false;
     }
   }

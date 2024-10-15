@@ -1,40 +1,81 @@
-.container {
+.fishmart-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 10px 20px;
   background-color: #ffffff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
 .logo-section {
   display: flex;
   align-items: center;
 }
-.text-fishmart {
-  font-size: 1.5rem;
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.brand-name {
+  font-size: 1.5em;
   font-weight: bold;
-  margin-left: 0.5rem;
+  color: #333;
 }
-.header-menu {
+
+.main-nav {
   display: flex;
-  gap: 1rem;
+  gap: 20px;
 }
-.menu-item {
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+
+.nav-item {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 10px;
 }
-.menu-item.active {
-  background-color: #636AE8;
-  color: white;
+
+.nav-item.active {
+  font-weight: bold;
+  border-bottom: 2px solid #007bff;
 }
-.user-section {
+
+.user-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 15px;
 }
+
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.dashboard-button, .login-button, .signup-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.dashboard-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
 .user-name {
-  margin: 0 0.5rem;
+  font-weight: bold;
 }

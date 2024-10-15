@@ -11,7 +11,7 @@
       <div class="price-action">
         <span class="price">${{ product.price.toFixed(2) }}</span>
         <button (click)="toggleBasket(product)">
-          {{ cartService.isProductInCart(product.id) ? '-' : 'Add' }}
+          {{ cartService.isProductInCart(product.id) ? '-' : '+' }}
         </button>
       </div>
     </div>

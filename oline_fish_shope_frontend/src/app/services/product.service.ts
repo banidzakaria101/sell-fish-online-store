@@ -55,9 +55,7 @@ export class ProductService {
 
   // Get Products by Category Id
   getProductsByCategory(categoryId: number): Observable<Product[]> {
-    const token = this.jwtService.getToken();
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
     });
 
     return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
@@ -79,8 +77,7 @@ export class ProductService {
 
   getProductById(id: number): Observable<Product> {
 
-   const headers = this.getAuthHeaders();
-   return this.http.get<Product>(`${this.apiUrl}/details?id=${id}`, { headers });
+   return this.http.get<Product>(`${this.apiUrl}/details/${id}`);
   }
 
 }

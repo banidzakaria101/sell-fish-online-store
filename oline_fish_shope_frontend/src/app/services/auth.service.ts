@@ -29,6 +29,8 @@ export class AuthService {
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
+
+
   // Register user (Customer)
   registerUser(customerDto: RegisterUserDto): Observable<User> {
     return this.http.post<User>(`${this.apiUrl}/sign-up`, customerDto);
@@ -46,7 +48,12 @@ export class AuthService {
       tap((loginResponse: LoginResponse) => {
         if (loginResponse) {
           this.jwtService.saveToken(loginResponse.token);
-          this.currentUserSubject.next(this.decodeToken(loginResponse.token));
+          const userDetails = this.decodeToken(loginResponse.token);
+          console.log('User Details:', userDetails);
+          this.currentUserSubject.next(userDetails);
+
+          // Store user ID in the subject for easy access
+          this.currentUserSubject.next({ ...userDetails, userId: this.jwtService.getUserId(loginResponse.token) });
         } else {
           console.error('No login response received');
         }
@@ -83,7 +90,9 @@ export class AuthService {
   // Decode token
   private decodeToken(token: string | null): any {
     if (token) {
-      return this.jwtService.decodeToken(token);
+      const decoded = this.jwtService.decodeToken(token);
+      console.log('Decoded Token:', decoded); // Log the decoded token
+      return decoded;
     }
     return null;
   }
@@ -95,6 +104,12 @@ export class AuthService {
 
   getAdminId(): number | null {
     const currentUser = this.currentUserSubject.value;
-    return currentUser?.adminId || null; 
+    return currentUser?.adminId || null;
+  }
+
+  getCurrentUserId(): number {
+    const user = this.getCurrentUser();
+    console.log('Current User:', user);
+    return user ? user.id : 0;
   }
 }

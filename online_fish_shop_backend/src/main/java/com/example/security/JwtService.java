@@ -1,5 +1,6 @@
 package com.example.security;
 
+import com.example.model.User; // Import your custom User class
 import com.example.Enum.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -38,11 +39,6 @@ public class JwtService {
         return jwtExpiration;
     }
 
-    public String generateToken(Map<String, Object> extractClaims, UserDetails userDetails, Role role) {
-        extractClaims.put("role", role);
-        return buildToken(extractClaims, userDetails, jwtExpiration);
-    }
-
     public String generateToken(UserDetails userDetails, Role role) {
         return generateToken(new HashMap<>(), userDetails, role);
     }
@@ -63,7 +59,7 @@ public class JwtService {
 
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-        return Keys.hmacShaKeyFor((keyBytes));
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
     private Claims extractAllClaims(String token) {
@@ -74,7 +70,6 @@ public class JwtService {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
@@ -87,5 +82,15 @@ public class JwtService {
 
     private Date extractExpired(String token) {
         return extractClaim(token, Claims::getExpiration);
+    }
+
+    public Long extractUserId(String token) {
+        return extractClaim(token, claims -> claims.get("userId", Long.class));
+    }
+
+    public String generateToken(Map<String, Object> extractClaims, UserDetails userDetails, Role role) {
+        User customUser = (User) userDetails;
+        extractClaims.put("userId", customUser.getId());
+        return buildToken(extractClaims, userDetails, jwtExpiration);
     }
 }

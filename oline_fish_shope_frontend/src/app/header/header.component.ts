@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { Role } from '../enums/role'; // Import Role if you haven't
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent {
     });
   }
 
+
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
@@ -24,6 +26,11 @@ export class HeaderComponent {
   getUserName(): string {
     const currentUser = this.authService.getCurrentUser();
     return currentUser ? currentUser.username : '';
+  }
+
+  getUserRole(): string {
+    const role = this.authService.getCurrentUserRole();
+    return role ? role.toString() : '';
   }
 
   logout(): void {
@@ -37,5 +44,19 @@ export class HeaderComponent {
 
   signUp(): void {
     this.router.navigate(['/sign-up']);
+  }
+
+  isActive(route: string): boolean {
+    return this.router.url.includes(route);
+  }
+
+  navigateToDashboard(): void {
+    const role = this.getUserRole();
+    console.log(role);
+    if (role === 'user') {
+      this.router.navigate(['/user-dashboard']);
+    } else {
+      this.router.navigate(['/admin-dashboard']);
+    }
   }
 }

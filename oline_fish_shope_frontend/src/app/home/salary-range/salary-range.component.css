@@ -1,0 +1,14 @@
+.filter-section {
+  margin-bottom: 20px;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}

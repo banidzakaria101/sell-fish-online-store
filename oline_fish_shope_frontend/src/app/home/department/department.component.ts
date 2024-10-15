@@ -80,7 +80,7 @@ export class DepartmentComponent implements OnInit {
 
   onLeaveDepartment(): void {
     if (this.selectedDepartmentId === null) {
-      this.categories = []; 
+      this.categories = [];
     }
   }
 }

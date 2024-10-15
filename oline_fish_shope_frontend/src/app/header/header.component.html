@@ -1,27 +1,33 @@
-<div class="container">
+<header class="fishmart-header">
   <div class="logo-section">
-    <span class="pi pi-prime" style="font-size: 2rem"></span>
-    <span class="text-fishmart">FishMart</span>
+    <img src="path-to-your-logo.svg" alt="FishMart Logo" class="logo">
+    <span class="brand-name">FishMart</span>
   </div>
-  <div class="header-menu">
-    <span class="menu-item active">Home</span>
-    <span class="menu-item">Shop</span>
-    <span class="menu-item">About Us</span>
-    <span class="menu-item">Contact Us</span>
-    <span class="menu-item">Blog</span>
-  </div>
-  <div class="user-section">
-    <span class="pi pi-shopping-cart" style="font-size: 1.5rem"></span>
-    <span class="pi pi-bell" style="font-size: 1.5rem"></span>
-
-    <!-- Display User Name if Logged In -->
-    <ng-container *ngIf="isLoggedIn(); else loggedOut">
-      <span class="user-name">{{ getUserName() }}</span>
-      <button (click)="logout()" class="btn">Logout</button>
+  <nav class="main-nav">
+    <a href="/" class="nav-item" [class.active]="isActive('home')">Home</a>
+    <a href="/shop" class="nav-item" [class.active]="isActive('shop')">Shop</a>
+    <a href="/about-us" class="nav-item" [class.active]="isActive('about')">About Us</a>
+    <a href="/contact-us" class="nav-item" [class.active]="isActive('contact')">Contact Us</a>
+    <a href="/blog" class="nav-item" [class.active]="isActive('blog')">Blog</a>
+  </nav>
+  <div class="user-actions">
+    <button class="icon-button">
+      <i class="pi pi-shopping-cart"></i>
+    </button>
+    <button class="icon-button">
+      <i class="pi pi-bell"></i>
+    </button>
+    <ng-container *ngIf="isLoggedIn(); else loginSignup">
+      <button class="dashboard-button" (click)="navigateToDashboard()">Dashboard</button>
+      <div class="user-profile">
+        <img [src]="" alt="User Profile" class="profile-image">
+        <span class="user-name">{{ getUserName() }}</span>
+      </div>
+      <button (click)="logout()" class="logout-button">Logout</button>
     </ng-container>
-    <ng-template #loggedOut>
-      <button (click)="login()" class="btn">Login</button>
-      <button (click)="signUp()" class="btn">Sign Up</button>
+    <ng-template #loginSignup>
+      <button (click)="login()" class="login-button">Login</button>
+      <button (click)="signUp()" class="signup-button">Sign Up</button>
     </ng-template>
   </div>
-</div>
+</header>

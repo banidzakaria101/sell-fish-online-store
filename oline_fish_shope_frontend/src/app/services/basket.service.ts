@@ -20,7 +20,10 @@ export class BasketService {
 
   // Add product to the basket
   addToBasket(customerId: number, productId: number): Observable<Basket> {
-    return this.http.post<Basket>(`${this.apiUrl}/add`, { customerId, productId });
+    console.error(customerId);
+    console.log(productId);
+
+    return this.http.post<Basket>(`${this.apiUrl}/add/${customerId}/${productId}`, {});
   }
 
   // Remove product from the basket

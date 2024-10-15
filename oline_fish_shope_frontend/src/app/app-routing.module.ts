@@ -12,13 +12,20 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { OrderManagementComponent } from './admin/order-management/order-management.component';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent },
-  {path : '',component : HomePageComponent},
+  { path : '',component : HomePageComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'home', component: WelcomePageComponent },
   { path: 'user-dashboard', component: UserDashboardComponent},
+  { path: 'register', component: RegisterComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+
   {
     path: 'admin-dashboard',
     component: BoardAdminComponent,

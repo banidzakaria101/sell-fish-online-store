@@ -2,7 +2,9 @@ package com.example.security;
 
 import com.example.dto.AdminDTO;
 import com.example.dto.CustomerDTO;
+import com.example.dto.LoginResponse;
 import com.example.dto.LoginUserDTO;
+import com.example.exception.UserNotFoundException;
 import com.example.mapper.UserMapper;
 import com.example.model.Customer;
 import com.example.model.User;
@@ -28,6 +30,9 @@ public class AuthenticationService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtService jwtService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -67,5 +72,21 @@ public class AuthenticationService {
         User user = userMapper.toAdminEntity(input);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public LoginResponse login(LoginUserDTO input) {
+        try {
+            User authenticatedUser = authenticate(input);
+            String jwtToken = jwtService.generateToken(authenticatedUser, authenticatedUser.getRole());
+
+            LoginResponse loginResponse = new LoginResponse();
+            loginResponse.setToken(jwtToken);
+            loginResponse.setExpiresIn(jwtService.getExpirationTime());
+            loginResponse.setUserId(authenticatedUser.getId());
+
+            return loginResponse;
+        } catch (UserNotFoundException e) {
+            throw e;
+        }
     }
 }

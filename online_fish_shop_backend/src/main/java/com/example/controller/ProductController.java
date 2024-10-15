@@ -103,8 +103,8 @@ public class ProductController {
         return productService.getProductsByCategory(id);
     }
 
-    @GetMapping("/details")
-    public  Product details(@RequestParam long id){
+    @GetMapping("/details/{id}")
+    public  Product details(@PathVariable long id){
         return productService.getProductById(id);
     }
 

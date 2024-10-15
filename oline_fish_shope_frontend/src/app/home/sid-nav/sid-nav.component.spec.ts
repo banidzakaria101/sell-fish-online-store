@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BoardUserComponent } from './board-user.component';
+import { SidNavComponent } from './sid-nav.component';
 
-describe('BoardUserComponent', () => {
-  let component: BoardUserComponent;
-  let fixture: ComponentFixture<BoardUserComponent>;
+describe('SidNavComponent', () => {
+  let component: SidNavComponent;
+  let fixture: ComponentFixture<SidNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BoardUserComponent]
+      declarations: [SidNavComponent]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(BoardUserComponent);
+    
+    fixture = TestBed.createComponent(SidNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

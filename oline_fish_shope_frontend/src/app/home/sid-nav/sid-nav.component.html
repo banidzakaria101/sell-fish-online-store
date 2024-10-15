@@ -1,0 +1,48 @@
+<div class="sidenav">
+  <div class="filters-header">
+    <h2>Filters</h2>
+    <a href="#" (click)="clearAllFilters()">Clear all</a>
+  </div>
+
+  <!-- Salary Range -->
+  <div class="filter-section">
+    <div class="section-header" (click)="toggleSection('salaryRange')">
+      <h3>Salary range</h3>
+      <i class="pi" [ngClass]="{'pi-chevron-down': !isExpanded.salaryRange, 'pi-chevron-up': isExpanded.salaryRange}"></i>
+    </div>
+    <div *ngIf="isExpanded.salaryRange">
+      <p-slider [(ngModel)]="salaryRange" [range]="true" [min]="20" [max]="600"></p-slider>
+      <div class="range-values">
+        <span>{{ salaryRange[0] }}</span>
+        <span>to</span>
+        <span>{{ salaryRange[1] }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Department -->
+  <div class="filter-section">
+    <div class="section-header" (click)="toggleSection('department')">
+      <h3>Department</h3>
+      <i class="pi" [ngClass]="{'pi-chevron-down': !isExpanded.department, 'pi-chevron-up': isExpanded.department}"></i>
+    </div>
+    <div *ngIf="isExpanded.department">
+      <div *ngFor="let dept of departments" class="checkbox-item">
+        <p-checkbox [(ngModel)]="selectedDepartments" [value]="dept.name" [label]="dept.name"></p-checkbox>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category -->
+  <div class="filter-section">
+    <div class="section-header" (click)="toggleSection('category')">
+      <h3>Category</h3>
+      <i class="pi" [ngClass]="{'pi-chevron-down': !isExpanded.category, 'pi-chevron-up': isExpanded.category}"></i>
+    </div>
+    <div *ngIf="isExpanded.category">
+      <div *ngFor="let cat of categories" class="checkbox-item">
+        <p-checkbox [(ngModel)]="selectedCategories" [value]="cat.id" [label]="cat.name"></p-checkbox>
+      </div>
+    </div>
+  </div>
+</div>
