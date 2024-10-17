@@ -1,13 +1,11 @@
 package com.example.controller;
 
 import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.example.model.Admin;
 import com.example.model.Category;
 import com.example.model.Product;
 import com.example.repository.AdminRepository;
 import com.example.repository.CategoryRepository;
-import com.example.service.CategoryService;
 import com.example.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("api/product")
@@ -106,6 +103,11 @@ public class ProductController {
     @GetMapping("/details/{id}")
     public  Product details(@PathVariable long id){
         return productService.getProductById(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public Product updateProduct(@PathVariable Long id, @RequestBody Product product){
+        return productService.updateProduct(id ,product);
     }
 
 

@@ -51,8 +51,8 @@ public class ProductService {
         if (productOptional.isPresent()) {
             Product existingProduct = productOptional.get();
             existingProduct.setPrice(product.getPrice());
-            existingProduct.setImagePath(product.getImagePath()); // Ensure this method exists
             existingProduct.setStock(product.getStock());
+            existingProduct.setAvailable(product.getAvailable());
             return productRepository.save(existingProduct);
         } else {
             throw new RuntimeException("Product not found");

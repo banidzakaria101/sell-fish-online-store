@@ -46,8 +46,8 @@ public class Product {
     private Admin admin;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)  // Foreign key to Category
-    private Category category;  // Each product belongs to one category
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     @JsonIgnore
     @OneToMany

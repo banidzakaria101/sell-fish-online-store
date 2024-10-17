@@ -1,5 +1,5 @@
-<div *ngIf="products.length > 0; else noProducts" class="product-grid">
-  <div *ngFor="let product of products" class="product-card">
+<div *ngIf="filteredProducts.length > 0; else noProducts" class="product-grid">
+  <div *ngFor="let product of filteredProducts" class="product-card">
     <div class="product-image">
       <a [routerLink]="['/product', product.id]">
         <img [src]="product.imagePath || 'assets/images/default-fish.jpg'" [alt]="product.name" class="product-img">

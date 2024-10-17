@@ -1,9 +1,11 @@
-/* Product Details Component Styles */
-
-
 
 .grid {
   display: flex;
+}
+
+.description{
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 .col-12 {

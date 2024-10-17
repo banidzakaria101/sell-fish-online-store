@@ -14,6 +14,7 @@ import { Role } from '../../enums/role';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -21,7 +22,6 @@ export class LoginComponent {
     private router: Router,
     private jwtService: JwtService
   ) {
-    // Adjusted form control name
     this.loginForm = this.fb.group({
       usernameOrEmail: ['', Validators.required],
       password: ['', Validators.required]
@@ -36,11 +36,10 @@ export class LoginComponent {
 
     const formValues = this.loginForm.value;
     const loginUser: LoginUserDto = {
-      usernameOrEmail: formValues.usernameOrEmail, 
+      usernameOrEmail: formValues.usernameOrEmail,
       password: formValues.password
     };
 
-    // Log the data that will be sent to the backend
     console.log('Data sent to backend:', loginUser);
 
     this.authService.authenticate(loginUser).subscribe({

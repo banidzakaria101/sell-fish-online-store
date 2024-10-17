@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
@@ -9,7 +9,7 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './list-product.component.html',
   styleUrls: ['./list-product.component.scss']
 })
-export class ListProductComponent implements OnInit {
+export class ListProductComponent implements OnInit, OnChanges {
   @Input() products: Product[] = [];
   @Input() selectedCategoryId: number | null = null; // Accept selected category ID
   filteredProducts: Product[] = [];
@@ -24,15 +24,17 @@ export class ListProductComponent implements OnInit {
     this.loadProducts();
   }
 
-  ngOnChanges(): void {
-    this.filterProductsByCategory(this.selectedCategoryId); // Filter when category ID changes
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['selectedCategoryId']) { // Use bracket notation to access the property
+      this.filterProductsByCategory(this.selectedCategoryId); // Filter when category ID changes
+    }
   }
 
   loadProducts(): void {
     this.productService.listProducts().subscribe({
       next: (products) => {
         this.products = products;
-        this.filteredProducts = products;
+        this.filteredProducts = products; // Initialize with all products
         console.log('Products loaded:', products);
       },
       error: (error) => {
@@ -43,10 +45,9 @@ export class ListProductComponent implements OnInit {
 
   filterProductsByCategory(selectedCategoryId: number | null): void {
     if (selectedCategoryId) {
-      console.log(selectedCategoryId);
       this.filteredProducts = this.products.filter(product => product.category?.id === selectedCategoryId);
     } else {
-      this.filteredProducts = this.products; 
+      this.filteredProducts = this.products; // Show all products if no category is selected
     }
   }
 

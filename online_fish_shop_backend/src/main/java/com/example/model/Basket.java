@@ -3,7 +3,6 @@ package com.example.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,6 @@ import java.util.List;
 @Getter
 public class Basket {
 
-    // Getters and Setters
-    @jakarta.persistence.Id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,25 +24,9 @@ public class Basket {
     @OneToOne
     private Customer customer;
 
-    public void setId(Long id) {
-        this.id = id;
+    public void removeProduct(BasketProduct existingProduct) {
     }
 
-    public void setProducts(List<BasketProduct> products) {
-        this.products = products;
+    public void addProduct(BasketProduct newBasketProduct) {
     }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public void addProduct(BasketProduct product) {
-        products.add(product);
-    }
-
-    public void removeProduct(BasketProduct product) {
-        products.remove(product);
-    }
-
-
 }

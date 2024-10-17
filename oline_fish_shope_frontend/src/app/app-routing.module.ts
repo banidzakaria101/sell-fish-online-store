@@ -15,11 +15,15 @@ import { UserManagementComponent } from './admin/user-management/user-management
 import { RegisterComponent } from './authentication/register/register.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { UserBasketComponent } from './user-dashboard/user-basket/user-basket.component';
+import { UserOrdersComponent } from './user-dashboard/user-orders/user-orders.component';
+import { UserFavoritesComponent } from './user-dashboard/user-favorites/user-favorites.component';
 
 const routes: Routes = [
   { path: 'product/:id', component: ProductDetailsComponent },
   { path : '',component : HomePageComponent},
   { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: '/', pathMatch: 'full' },
   { path: 'home', component: WelcomePageComponent },
   { path: 'user-dashboard', component: UserDashboardComponent},
   { path: 'register', component: RegisterComponent },
@@ -37,6 +41,17 @@ const routes: Routes = [
       { path: 'users', component: UserManagementComponent }
     ]
   },
+
+  {
+    path: 'user-dashboard',
+    component: UserDashboardComponent,
+    canActivate: [authGuard],
+    children: [
+      { path: 'basket', component: UserBasketComponent },
+      { path: 'user-orders', component: UserOrdersComponent },
+      { path: 'favorites', component: UserFavoritesComponent },
+    ]
+  }
 ];
 
 @NgModule({

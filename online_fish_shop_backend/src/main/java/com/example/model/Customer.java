@@ -13,9 +13,9 @@ import java.util.List;
 @DiscriminatorValue("customer")
 public class Customer extends User{
 
-    public Customer(){
-        this.setRole(Role.CUSTOMER);
-    }
+//    public Customer(){
+//        this.setRole(Role.CUSTOMER);
+//    }
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;

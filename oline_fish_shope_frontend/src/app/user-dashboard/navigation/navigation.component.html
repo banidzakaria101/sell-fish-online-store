@@ -8,7 +8,7 @@
     <h3>Main Menu</h3>
     <ul class="sidebar-menu">
       <li>
-        <a routerLink="/orders" routerLinkActive="active">
+        <a [routerLink]="['/user-dashboard/basket']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
           <i class="fa fa-shopping-cart"></i> Your Orders
         </a>
       </li>

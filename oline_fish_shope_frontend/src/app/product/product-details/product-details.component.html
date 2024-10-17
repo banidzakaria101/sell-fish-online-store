@@ -7,10 +7,12 @@
   <div class="col-12 md:col-7 lg:col-8">
     <h1 class="mb-3">{{ product.name }}</h1>
     <div class="flex align-items-center mb-3">
-      <h2 class="m-0 mr-3">${{ product.price.toFixed(2) }}/lb</h2>
-      <p-tag severity="success" value="Save 5%"></p-tag>
+      <h2 class="m-0 mr-3">${{ product.price.toFixed(2) }}</h2>
+      <p-tag severity="success" value="Save 10%"></p-tag>
     </div>
+    <div class="description" >
     <p class="text-color-secondary mb-4">{{ product.description }}</p>
+  </div>
     <div class="mb-4">
       <i class="pi pi-truck mr-2"></i>
       <span>This item ships FREE with orders containing $125+ of Frozen items. Orders with less than $125 of Frozen items ship for $19.99. Frozen items ship with dry ice.</span>

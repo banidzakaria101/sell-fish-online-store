@@ -15,7 +15,7 @@ export class RegisterComponent {
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
-      userName: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Ensure 10-digit phone number
