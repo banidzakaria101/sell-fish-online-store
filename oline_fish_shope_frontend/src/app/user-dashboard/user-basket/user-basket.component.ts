@@ -111,7 +111,7 @@ export class UserBasketComponent implements OnInit {
       this.basketService.clearBasket(this.customerId).subscribe(
         updatedBasket => {
           this.basket = updatedBasket;
-          this.products = []; // Clear displayed products
+          this.products = []; 
         },
         error => {
           console.error('Error clearing basket:', error);
@@ -125,10 +125,23 @@ export class UserBasketComponent implements OnInit {
       this.orderService.createOrder(this.customerId, productId).subscribe(
         order => {
           console.log('Order created:', order);
-          this.removeFromBasket(productId); 
+          this.removeFromBasket(productId);
+          
+          // Display success message
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Order Created',
+            detail: 'Your order has been successfully placed!',
+          });
         },
         error => {
           console.error('Error creating order:', error);
+          
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Order Failed',
+            detail: 'There was an issue placing your order. Please try again.',
+          });
         }
       );
     }
