@@ -19,18 +19,22 @@
         <td>{{product.id}}</td>
         <td>{{product.name}}</td>
         <td>
-          <input pInputText type="number" [(ngModel)]="product.price" (blur)="updateProduct(product)">
+          <input pInputText type="number" [(ngModel)]="product.price" [disabled]="editingProductId !== product.id">
         </td>
         <td>
-          <input pInputText type="number" [(ngModel)]="product.stock" (blur)="updateProduct(product)">
+          <input pInputText type="number" [(ngModel)]="product.stock" [disabled]="editingProductId !== product.id">
         </td>
         <td>
-          <p-checkbox [(ngModel)]="product.available" [binary]="true" (onChange)="updateProduct(product)"></p-checkbox>
+          <p-checkbox [(ngModel)]="product.available" [binary]="true" [disabled]="editingProductId !== product.id"></p-checkbox>
         </td>
         <td>
-          <button pButton icon="pi pi-save" (click)="updateProduct(product)"></button>
+          <button pButton icon="pi pi-pencil" (click)="enableEditing(product)" *ngIf="editingProductId !== product.id"></button>
+          <button pButton icon="pi pi-save" (click)="updateProduct(product)" *ngIf="editingProductId === product.id"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
+
+  <!-- Message display for feedback -->
+  <p-toast></p-toast>
 </div>

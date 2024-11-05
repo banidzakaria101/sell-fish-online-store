@@ -11,11 +11,19 @@ export class OrderService {
 
   constructor(private http: HttpClient) {}
 
-  getAllOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl);
+  getCustomerOrders(customerId: number): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/orders/${customerId}`);
+}
+
+updateOrderStatus(orderId: number, status: string): Observable<Order> {
+  return this.http.patch<Order>(`${this.apiUrl}/${orderId}/status?status=${status}`, {}); // Ensure your API supports this
+}
+
+  createOrder(customerId: number, productId: number): Observable<Order> {
+    return this.http.post<Order>(`${this.apiUrl}/create?customerId=${customerId}&productId=${productId}`, {});
   }
 
-  updateOrder(order: Order): Observable<Order> {
-    return this.http.put<Order>(`${this.apiUrl}/${order.id}`, order); // Ensure your API supports this
+  getAllOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/all`);
   }
 }

@@ -30,14 +30,6 @@
   </div>
 
   <div class="form-group">
-    <label for="department">Department</label>
-    <select id="department" (change)="onDepartmentChange($event)" required>
-      <option value="" disabled selected>Select a department</option>
-      <option *ngFor="let dept of departments" [value]="dept.id">{{ dept.name }}</option>
-    </select>
-  </div>
-
-  <div class="form-group">
     <label for="category">Category</label>
     <select id="category" formControlName="category" required>
       <option value="" disabled selected>Select a category</option>

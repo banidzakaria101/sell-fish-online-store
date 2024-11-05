@@ -29,6 +29,6 @@ public class SwaggerConfiguration {
                 .title("Authentication Service Api Doc")
                 .version("1.0.0")
                 .description("HTTP APIs to manage user registration and authentication.")
-                .contact(new Contact().name("Alaa"));
+                .contact(new Contact().name("Zack"));
     }
 }

@@ -1,5 +1,7 @@
 package com.example.service;
 
+import com.example.dto.BasketDTO;
+import com.example.dto.BasketProductDTO;
 import com.example.exception.CustomerNotFoundException;
 import com.example.exception.ProductNotFoundException;
 import com.example.model.Basket;
@@ -11,8 +13,11 @@ import com.example.repository.ProductRepository;
 import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BasketService {
@@ -26,7 +31,8 @@ public class BasketService {
     @Autowired
     private UserRepository userRepository;
 
-    public Basket addProductToBasket(Long customerId, Long productId) {
+    @Transactional
+    public BasketDTO addProductToBasket(Long customerId, Long productId) {
         Optional<Customer> customerOpt = userRepository.findById(customerId)
                 .filter(user -> user instanceof Customer)
                 .map(user -> (Customer) user);
@@ -40,6 +46,9 @@ public class BasketService {
             if (basket == null) {
                 basket = new Basket();
                 basket.setCustomer(customer);
+                basket = basketRepository.save(basket); // Save new basket to database
+                customer.setBasket(basket); // Link basket to customer
+                userRepository.save(customer); // Update customer in database
             }
 
             // Check if the product is already in the basket
@@ -56,16 +65,18 @@ public class BasketService {
                 BasketProduct newBasketProduct = new BasketProduct();
                 newBasketProduct.setProduct(product);
                 newBasketProduct.setQuantity(1); // Initialize with quantity 1
-                basket.addProduct(newBasketProduct);
+                basket.addProduct(newBasketProduct); // Add to basket's product list
             }
 
-            return basketRepository.save(basket);
+            // Save the updated basket
+            basketRepository.save(basket); // Ensure the basket is saved with updated products
+            return convertToDTO(basket);
         }
 
         throw new RuntimeException("Customer or Product not found");
     }
 
-    public Basket removeProductFromBasket(Long customerId, Long productId) {
+    public BasketDTO removeProductFromBasket(Long customerId, Long productId) {
         Optional<Customer> customerOpt = userRepository.findById(customerId)
                 .filter(user -> user instanceof Customer)
                 .map(user -> (Customer) user);
@@ -89,7 +100,8 @@ public class BasketService {
                     } else {
                         basket.removeProduct(existingProduct);
                     }
-                    return basketRepository.save(basket);
+                    basket = basketRepository.save(basket);
+                    return convertToDTO(basket);
                 }
             }
         }
@@ -97,15 +109,35 @@ public class BasketService {
         throw new RuntimeException("Customer or Product not found");
     }
 
-    public Basket getBasketByCustomerId(Long customerId) {
+    public BasketDTO getBasketByCustomerId(Long customerId) {
         Optional<Customer> customerOpt = userRepository.findById(customerId)
                 .filter(user -> user instanceof Customer)
                 .map(user -> (Customer) user);
 
         if (customerOpt.isPresent()) {
-            return customerOpt.get().getBasket();
+            return convertToDTO(customerOpt.get().getBasket());
         }
 
         throw new CustomerNotFoundException("Customer not found");
+    }
+
+    // Conversion method
+    private BasketDTO convertToDTO(Basket basket) {
+        if (basket == null) return null;
+
+        List<BasketProductDTO> productDTOs = basket.getProducts().stream()
+                .map(bp -> new BasketProductDTO(bp.getId(), bp.getProduct().getId(), bp.getQuantity()))
+                .toList();
+
+        return new BasketDTO(basket.getId(), productDTOs);
+    }
+
+    public List<BasketProductDTO> getProductByBasket(Long basketId) {
+        List<BasketProduct> basketProducts = basketRepository.findBasketProductsByBasketId(basketId);
+
+        // Convert each BasketProduct to BasketProductDTO
+        return basketProducts.stream()
+                .map(bp -> new BasketProductDTO(bp.getId(), bp.getProduct().getId(), bp.getQuantity()))
+                .collect(Collectors.toList());
     }
 }

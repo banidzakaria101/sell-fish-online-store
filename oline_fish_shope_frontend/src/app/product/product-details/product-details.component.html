@@ -1,39 +1,33 @@
 <app-header></app-header>
 <p-breadcrumb [model]="breadcrumbItems" [home]="home"></p-breadcrumb>
-<div class="grid mt-6">
-  <div class="col-12 md:col-5 lg:col-4">
-    <p-image [src]="product.imagePath" [alt]="product.name" [preview]="true" styleClass="w-full"></p-image>
+<div class="grid mt-5">
+  <!-- Product Image Card -->
+  <div class="card-image">
+    <img [src]="product.imagePath" [alt]="product.name"  styleClass="product-image">
   </div>
+
+  <!-- Product Details -->
   <div class="col-12 md:col-7 lg:col-8">
     <h1 class="mb-3">{{ product.name }}</h1>
     <div class="flex align-items-center mb-3">
       <h2 class="m-0 mr-3">${{ product.price.toFixed(2) }}</h2>
       <p-tag severity="success" value="Save 10%"></p-tag>
     </div>
-    <div class="description" >
-    <p class="text-color-secondary mb-4">{{ product.description }}</p>
-  </div>
+    <div class="description">
+      <p class="text-color-secondary mb-4">{{ product.description }}</p>
+    </div>
     <div class="mb-4">
       <i class="pi pi-truck mr-2"></i>
       <span>This item ships FREE with orders containing $125+ of Frozen items. Orders with less than $125 of Frozen items ship for $19.99. Frozen items ship with dry ice.</span>
       <a href="#" class="ml-1">Read More</a>
     </div>
-    <div class="mb-4">
-      <h5>See all Member Benefits</h5>
-      <div class="field-radiobutton mb-2">
-        <p-radioButton name="purchaseOption" value="subscription" [(ngModel)]="purchaseOption" inputId="subscription"></p-radioButton>
-        <label for="subscription" class="ml-2">Subscription Member (10% off)</label>
-      </div>
-      <div class="ml-4 mb-3" *ngIf="purchaseOption === 'subscription'">
+    <div class="">      
+      <div class="ml-4 mt-5" *ngIf="purchaseOption === 'subscription'">
         <p-dropdown [options]="deliveryOptions" [(ngModel)]="selectedDeliveryOption" optionLabel="label"></p-dropdown>
       </div>
-      <div class="field-radiobutton">
-        <p-radioButton name="purchaseOption" value="oneTime" [(ngModel)]="purchaseOption" inputId="oneTime"></p-radioButton>
-        <label for="oneTime" class="ml-2">One-time purchase</label>
-      </div>
+      
     </div>
-    <div class="flex align-items-center mb-4">
-      <p-inputNumber [(ngModel)]="quantity" [showButtons]="true" [min]="1" [max]="100" styleClass="mr-3"></p-inputNumber>
+    <div class="flex align-items-center mb-4 mt-8">
       <p-button label="ADD TO CART" icon="pi pi-shopping-cart" (onClick)="addToCart(customerId, product.id)"></p-button>
     </div>
   </div>

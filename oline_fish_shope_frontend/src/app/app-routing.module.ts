@@ -45,11 +45,11 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     component: UserDashboardComponent,
-    canActivate: [authGuard],
     children: [
       { path: 'basket', component: UserBasketComponent },
       { path: 'user-orders', component: UserOrdersComponent },
       { path: 'favorites', component: UserFavoritesComponent },
+      { path: 'orders', component: UserOrdersComponent },
     ]
   }
 ];

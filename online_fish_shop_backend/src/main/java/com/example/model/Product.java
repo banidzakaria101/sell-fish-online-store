@@ -9,7 +9,6 @@ import lombok.Setter;
 
 import java.util.List;
 
-
 @Entity
 @Setter
 @Getter
@@ -50,6 +49,6 @@ public class Product {
     private Category category;
 
     @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 }

@@ -1,64 +1,33 @@
-
 .grid {
   display: flex;
+  margin-left: 50px;
 }
 
-.description{
-  margin-top: 10px;
-  font-weight: 600;
+
+
+.card-image{
+  width: 50%;
 }
+
+.card-image img {
+  width: 100%; /* Make image fill the card width */
+  height: 500px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  
+}
+
 
 .col-12 {
-  flex: 0 0 50%;
-
-}
-
-.image-container {
-  text-align: center;
-}
-
-.product-image {
-  max-width: 100%;
-  height: auto;
-}
-
-.product-details {
-  display: flex;
-  flex-direction: column;
-}
-
-h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.price-tag {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-h2 {
-  font-size: 20px;
-  margin-right: 10px;
+  margin-left: 50px;
+  width: 50%;
+  margin-top: 50px;
 }
 
 .description {
-  margin-bottom: 20px;
-}
-
-.shipping-info {
-  margin-bottom: 20px;
-  font-size: 14px;
-}
-
-.purchase-options {
-  margin-bottom: 20px;
-}
-
-.quantity-cart {
-  display: flex;
-  align-items: center;
+  margin-top: 10px;
+  font-weight: 600;
 }
 
 /* Responsive adjustments */
@@ -66,7 +35,6 @@ h2 {
   .col-md-5 {
     flex: 0 0 41.66667%;
   }
-
   .col-md-7 {
     flex: 0 0 58.33333%;
   }
@@ -76,26 +44,7 @@ h2 {
   .col-lg-4 {
     flex: 0 0 33.33333%;
   }
-
   .col-lg-8 {
     flex: 0 0 66.66667%;
   }
-}
-
-/* PrimeNG specific adjustments */
-:host ::ng-deep .p-inputnumber {
-  width: 100px;
-}
-
-:host ::ng-deep .p-button {
-  margin-left: 10px;
-}
-
-:host ::ng-deep .p-dropdown {
-  width: 100%;
-  max-width: 300px;
-}
-
-:host ::ng-deep .p-radiobutton {
-  margin-right: 8px;
 }

@@ -30,6 +30,11 @@ import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessageModule } from 'primeng/message';
 import { TagModule } from 'primeng/tag';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { CardModule } from 'primeng/card';
+
+
 
 
 
@@ -66,7 +71,16 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { UserNavbarComponent } from './user-dashboard/user-navbar/user-navbar.component';
 import { SidNavComponent } from './home/sid-nav/sid-nav.component';
+import { AdminOverviewComponent } from './admin/admin-overview/admin-overview.component';
+import { BadgeModule } from 'primeng/badge';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { DividerModule } from 'primeng/divider';
+import { LottieModule } from 'ngx-lottie';
+import player from 'lottie-web';
 
+export function playerFactory() {
+  return player;
+}
 
 @NgModule({
   declarations: [
@@ -104,6 +118,7 @@ import { SidNavComponent } from './home/sid-nav/sid-nav.component';
     ContactUsComponent,
     UserNavbarComponent,
     SidNavComponent,
+    AdminOverviewComponent,
 
   ],
   imports: [
@@ -133,6 +148,7 @@ import { SidNavComponent } from './home/sid-nav/sid-nav.component';
     MatIconModule,
     MatSelectModule,
     MatButtonModule,
+    DialogModule,
     TableModule,
     InputTextModule,
     CheckboxModule,
@@ -149,6 +165,20 @@ import { SidNavComponent } from './home/sid-nav/sid-nav.component';
     InputNumberModule,
     MessageModule,
     TagModule,
+    ToastModule,
+    BadgeModule,
+    ProgressSpinnerModule,
+    CardModule,
+    ImageModule,
+    BreadcrumbModule,
+    TagModule,
+    DividerModule,
+    RadioButtonModule,
+    DropdownModule,
+    InputNumberModule,
+    ButtonModule,
+    
+    
 ],
   providers: [
     provideAnimationsAsync()

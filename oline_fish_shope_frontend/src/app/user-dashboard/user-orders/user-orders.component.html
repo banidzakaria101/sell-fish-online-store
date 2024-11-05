@@ -3,7 +3,8 @@
   <p-table [value]="orders" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header">
       <tr>
-        <th>Order ID</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
         <th>Order Date</th>
         <th>Status</th>
         <th>Total Amount</th>
@@ -11,7 +12,8 @@
     </ng-template>
     <ng-template pTemplate="body" let-order>
       <tr>
-        <td>{{ order.id }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.productPrice | currency }}</td>
         <td>{{ order.orderDate | date:'short' }}</td>
         <td>{{ order.status }}</td>
         <td>{{ order.totalAmount | currency }}</td>

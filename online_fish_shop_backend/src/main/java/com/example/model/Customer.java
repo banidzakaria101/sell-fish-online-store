@@ -13,9 +13,9 @@ import java.util.List;
 @DiscriminatorValue("customer")
 public class Customer extends User{
 
-//    public Customer(){
-//        this.setRole(Role.CUSTOMER);
-//    }
+    public Customer(){
+        this.setRole(Role.CUSTOMER);
+    }
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
@@ -23,7 +23,7 @@ public class Customer extends User{
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Basket basket;
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private FavoriteList favoriteList;
 
 

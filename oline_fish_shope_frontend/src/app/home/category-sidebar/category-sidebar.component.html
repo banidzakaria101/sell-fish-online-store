@@ -1,19 +1,8 @@
 <div class="category-sidebar">
-  <div class="category-header" (click)="toggleCategories()">
-    <h3>Categories</h3>
-    <i class="pi" [ngClass]="{'pi-chevron-down': !isCategoriesVisible, 'pi-chevron-up': isCategoriesVisible}"></i>
-  </div>
-  <div class="category-content" [ngClass]="{'expanded': isCategoriesVisible}">
-    <div *ngIf="loading">Loading categories...</div>
-    <div *ngIf="error" class="error">{{ error }}</div>
-    <div *ngFor="let category of displayedCategories" class="field-checkbox">
-      <p-radioButton
-        [(ngModel)]="selectedCategoryId"
-        [label]="category.name"
-        name="categoryGroup"
-        [value]="category.id"
-        (onChange)="selectedCategoryId = category.id">
-      </p-radioButton>
-    </div>
-  </div>
+  <h3>Categories</h3>
+  <ul>
+    <li *ngFor="let category of categories" (click)="selectCategory(category)" [class.selected]="category === selectedCategory">
+      {{ category.name }}
+    </li>
+  </ul>
 </div>

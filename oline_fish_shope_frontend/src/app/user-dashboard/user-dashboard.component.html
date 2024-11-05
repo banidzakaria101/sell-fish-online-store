@@ -1,26 +1,11 @@
 <app-header></app-header>
+<div class="nav-container">
 <app-navigation></app-navigation>
-
+</div>
 <div class="dashboard-container">
   <h1>Welcome to Your Dashboard</h1>
 
-  <div class="dashboard-cards">
-    <div class="card">
-      <h2>Your Orders</h2>
-      <p>View and manage your orders.</p>
-      <a routerLink="/user-dashboard/user-orders" class="btn">Go to Orders</a>
-    </div>
-    <div class="card">
-      <h2>Your Basket</h2>
-      <p>Check your current basket items.</p>
-      <a routerLink="/user-dashboard/basket" class="btn">Go to Basket</a>
-    </div>
-    <div class="card">
-      <h2>Your Favorites</h2>
-      <p>Explore your favorite items.</p>
-      <a routerLink="/user-dashboard/favorites" class="btn">Go to Favorites</a>
-    </div>
-  </div>
+  
   <div>
     <router-outlet></router-outlet>
   </div>

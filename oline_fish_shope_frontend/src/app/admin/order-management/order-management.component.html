@@ -1,9 +1,11 @@
+<p-toast></p-toast>
+
 <div class="card">
   <p-table #dt [value]="orders" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
            [tableStyle]="{'min-width': '60rem'}"
            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
            [rowsPerPageOptions]="[10,25,50]"
-           [globalFilterFields]="['id','customer.username','product.name','totalAmount','status','orderDate']">
+           [globalFilterFields]="['id','customerName','productName','totalAmount','status','orderDate', 'deliveryAddress']">
     <ng-template pTemplate="caption">
       <div class="flex justify-content-between align-items-center">
         <h5 class="m-0">Order Management</h5>
@@ -16,8 +18,9 @@
     <ng-template pTemplate="header">
       <tr>
         <th pSortableColumn="id">Order ID <p-sortIcon field="id"></p-sortIcon></th>
-        <th pSortableColumn="customer.username">Customer Name <p-sortIcon field="customer.username"></p-sortIcon></th>
-        <th pSortableColumn="product.name">Product Name <p-sortIcon field="product.name"></p-sortIcon></th>
+        <th pSortableColumn="customerName">Customer Name <p-sortIcon field="customerName"></p-sortIcon></th>
+        <th pSortableColumn="productName">Product Name <p-sortIcon field="productName"></p-sortIcon></th>
+        <th pSortableColumn="deliveryAddress">Delivery Address <p-sortIcon field="deliveryAddress"></p-sortIcon></th>
         <th pSortableColumn="totalAmount">Total Amount <p-sortIcon field="totalAmount"></p-sortIcon></th>
         <th pSortableColumn="status">Status <p-sortIcon field="status"></p-sortIcon></th>
         <th pSortableColumn="orderDate">Order Date <p-sortIcon field="orderDate"></p-sortIcon></th>
@@ -26,23 +29,17 @@
     </ng-template>
     <ng-template pTemplate="body" let-order>
       <tr>
-        <td>{{order.id}}</td>
-        <td>{{order.customer.username}}</td>
-        <td>{{order.product.name}}</td>
-        <td>{{order.totalAmount | currency}}</td>
+        <td>{{ order.id }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.deliveryAddress }}</td>
+        <td>{{ order.totalAmount | currency }}</td>
         <td>
           <p-dropdown [options]="statusOptions" [(ngModel)]="order.status"
                       (onChange)="updateOrderStatus(order)" optionLabel="label" optionValue="value">
           </p-dropdown>
         </td>
-        <td>{{order.orderDate | date:'short'}}</td>
-        <td>
-          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"
-                  (click)="editOrder(order)"></button>
-          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                  (click)="deleteOrder(order)"></button>
-        </td>
-      </tr>
+        <td>{{ order.orderDate | date:'short' }}</td>
     </ng-template>
     <ng-template pTemplate="summary">
       <div class="flex align-items-center justify-content-between">

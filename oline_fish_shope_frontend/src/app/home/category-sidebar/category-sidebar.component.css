@@ -1,12 +1,24 @@
-.filter-section {
-  margin-bottom: 20px;
+.category-sidebar {
+  width: 200px;
+  border-right: 1px solid #ccc;
+  padding: 10px;
 }
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+
+.category-sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.category-sidebar li {
+  padding: 8px;
   cursor: pointer;
 }
-.checkbox-item {
-  margin-bottom: 10px;
+
+.category-sidebar li:hover {
+  background-color: #f0f0f0;
+}
+
+.category-sidebar li.selected {
+  font-weight: bold;
+  background-color: #e0e0e0;
 }

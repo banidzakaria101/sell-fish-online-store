@@ -1,7 +1,7 @@
+// basket.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Product } from '../models/product.model';
 import { Basket } from '../models/basket.model';
 
 @Injectable({
@@ -15,24 +15,21 @@ export class BasketService {
 
   // Get the basket for the logged-in customer
   getBasket(customerId: number): Observable<Basket> {
-    return this.http.get<Basket>(`${this.apiUrl}/customer/${customerId}`);
+    return this.http.get<Basket>(`${this.apiUrl}/${customerId}`);
   }
 
   // Add product to the basket
   addToBasket(customerId: number, productId: number): Observable<Basket> {
-    console.error(customerId);
-    console.log(productId);
-
     return this.http.post<Basket>(`${this.apiUrl}/add/${customerId}/${productId}`, {});
   }
 
   // Remove product from the basket
   removeFromBasket(customerId: number, productId: number): Observable<Basket> {
-    return this.http.post<Basket>(`${this.apiUrl}/remove`, { customerId, productId });
+    return this.http.delete<Basket>(`${this.apiUrl}/remove/${customerId}/${productId}`);
   }
 
-  // Clear the basket (if applicable)
+  // Clear the basket
   clearBasket(customerId: number): Observable<Basket> {
-    return this.http.post<Basket>(`${this.apiUrl}/clear`, { customerId });
+    return this.http.delete<Basket>(`${this.apiUrl}/${customerId}/clear`);
   }
 }

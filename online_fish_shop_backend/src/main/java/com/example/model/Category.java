@@ -30,7 +30,7 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)  // One category can have many products
     private Set<Product> products;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id", nullable = false)  // Foreign key to Department
-    private Department department;  // Each category belongs to one department
+//    @ManyToOne
+//    @JoinColumn(name = "department_id", nullable = false)  // Foreign key to Department
+//    private Department department;  // Each category belongs to one department
 }

@@ -1,28 +1,68 @@
-<main class="welcome-container">
+<app-header></app-header>
 
-  <section class="welcome-content">
-    <h2 class="welcome-title">Welcome Back</h2>
-    <form class="signup-form" [formGroup]="loginForm" (ngSubmit)="login()">
-      <div class="form-group">
-        <label for="usernameOrEmail" class="form-label">Username or Email</label>
-        <input formControlName="usernameOrEmail" type="text" id="usernameOrEmail" class="form-input" placeholder="Enter your username or email" aria-label="Enter your username or email">
-      </div>
-      <div class="form-group">
-        <label for="password" class="form-label">Password</label>
-        <input formControlName="password" type="password" id="password" class="form-input" placeholder="At least 12 characters" aria-label="Enter your password">
-      </div>
-      <button type="submit" class="signup-button" [disabled]="loginForm.invalid">Log in</button>
-    </form>
-  </section>
+<div class="auth-container">
+  <div class="welcome-section">
+    <div class="logo-container">
+      <!-- <img src="https://lottie.host/88b29e79-248d-476e-91a9-903aa656b978/tEQDpBICdZ.json" alt="Fresh Fish Logo" class="logo"> -->
+    </div>
+    <h2 class="welcome-title">Welcome Back to FreshCatch</h2>
+    <p class="welcome-text">Your trusted source for premium seafood</p>
+  </div>
+  
+  <div class="form-section">
+    <div class="form-container">
+      <h1 class="form-title">Sign In</h1>
+      
+      <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email or Username</label>
+          <input 
+            type="text" 
+            formControlName="usernameOrEmail"
+            class="form-input"
+            placeholder="Enter your email or username"
+          >
+          <div *ngIf="loginForm.get('usernameOrEmail')?.touched && loginForm.get('usernameOrEmail')?.invalid" 
+               class="error-message">
+            Please enter your email or username
+          </div>
+        </div>
 
-  <footer class="site-footer">
-    <p class="copyright">© 2022 Brand, Inc.</p>
-    <nav class="footer-nav">
-      <a href="#" class="footer-link">Privacy</a>
-      <a href="#" class="footer-link">Terms</a>
-      <a href="#" class="footer-link">Sitemap</a>
-    </nav>
-  </footer>
-</main>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              class="form-input"
+              placeholder="Enter your password"
+            >
+            <button 
+              type="button" 
+              class="password-toggle"
+              (click)="showPassword = !showPassword">
+              <i class="eye-icon" [class.visible]="showPassword"></i>
+            </button>
+          </div>
+          <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" 
+               class="error-message">
+            Password is required
+          </div>
+        </div>
 
-<router-outlet></router-outlet>
+        <button 
+          type="submit" 
+          class="submit-button" 
+          [disabled]="loginForm.invalid || loading">
+          {{ loading ? 'Signing in...' : 'Sign In' }}
+        </button>
+
+        <div class="auth-footer">
+          <p>Don't have an account? 
+            <a routerLink="/register" class="auth-link">Create Account</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -43,7 +43,7 @@ export class HeaderComponent {
   }
 
   signUp(): void {
-    this.router.navigate(['/sign-up']);
+    this.router.navigate(['/register']);
   }
 
   isActive(route: string): boolean {
