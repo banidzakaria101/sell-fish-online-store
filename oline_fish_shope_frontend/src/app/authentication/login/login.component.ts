@@ -6,7 +6,6 @@ import { JwtService } from '../../services/jwt.service';
 import { LoginUserDto } from '../../dto/login-user-dto.dto';
 import { LoginResponse } from '../../dto/login-response.model';
 import { Role } from '../../enums/role';
-import { AnimationOptions } from 'ngx-lottie';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,11 +16,6 @@ export class LoginComponent {
   loading: boolean = false;
   showPassword: boolean = false;
   errorMessage: string | null = null;
-  options: AnimationOptions = {
-    path: 'https://lottie.host/88b29e79-248d-476e-91a9-903aa656b978/tEQDpBICdZ.json',
-    autoplay: true,
-    loop: true
-  };
  
   constructor(
     private fb: FormBuilder,

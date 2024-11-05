@@ -4,6 +4,8 @@ import { ProductService } from '../../services/product.service';
 import { CategoryService } from '../../services/category.service';
 import { AuthService } from '../../services/auth.service';
 import { Category } from '../../models/category.model';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductConfirmationDialogComponent } from '../product-confirmation-dialog/product-confirmation-dialog.component';
 
 @Component({
   selector: 'app-add-product',
@@ -19,7 +21,8 @@ export class AddProductComponent implements OnInit {
     private fb: FormBuilder,
     private productService: ProductService,
     private categoryService: CategoryService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -78,11 +81,17 @@ export class AddProductComponent implements OnInit {
               console.log('Product added successfully:', addedProduct);
               this.productForm.reset();
               this.selectedImage = null;
+              this.openConfirmationDialog();
           },
           error: (err) => {
               console.error('Error adding product:', err);
           }
       });
     }
+  }
+  openConfirmationDialog() {
+    this.dialog.open(ProductConfirmationDialogComponent, {
+      width: '300px'
+    });
   }
 }

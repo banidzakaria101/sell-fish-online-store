@@ -1,9 +1,13 @@
 <app-header></app-header>
 <p-breadcrumb [model]="breadcrumbItems" [home]="home"></p-breadcrumb>
+
+<!-- Toast component for notifications -->
+<p-toast></p-toast>
+
 <div class="grid mt-5">
   <!-- Product Image Card -->
   <div class="card-image">
-    <img [src]="product.imagePath" [alt]="product.name"  styleClass="product-image">
+    <img [src]="product.imagePath" [alt]="product.name" styleClass="product-image">
   </div>
 
   <!-- Product Details -->
@@ -25,7 +29,6 @@
       <div class="ml-4 mt-5" *ngIf="purchaseOption === 'subscription'">
         <p-dropdown [options]="deliveryOptions" [(ngModel)]="selectedDeliveryOption" optionLabel="label"></p-dropdown>
       </div>
-      
     </div>
     <div class="flex align-items-center mb-4 mt-8">
       <p-button label="ADD TO CART" icon="pi pi-shopping-cart" (onClick)="addToCart(customerId, product.id)"></p-button>

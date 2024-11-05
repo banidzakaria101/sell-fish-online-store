@@ -75,6 +75,9 @@ import { AdminOverviewComponent } from './admin/admin-overview/admin-overview.co
 import { BadgeModule } from 'primeng/badge';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DividerModule } from 'primeng/divider';
+import { ProductConfirmationDialogComponent } from './product/product-confirmation-dialog/product-confirmation-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MessageService } from 'primeng/api';
 
 
 
@@ -115,6 +118,7 @@ import { DividerModule } from 'primeng/divider';
     UserNavbarComponent,
     SidNavComponent,
     AdminOverviewComponent,
+    ProductConfirmationDialogComponent,
 
   ],
   imports: [
@@ -172,11 +176,13 @@ import { DividerModule } from 'primeng/divider';
     RadioButtonModule,
     DropdownModule,
     InputNumberModule,
-    ButtonModule
+    ButtonModule,
+    MatDialogModule
     
 ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    [MessageService]
   ],
   bootstrap: [AppComponent]
 })

@@ -4,12 +4,13 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { BasketService } from '../../services/basket.service';
 import { AuthService } from '../../services/auth.service';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.css']
+  styleUrls: ['./product-details.component.css'],
+  providers: [MessageService]
 })
 export class ProductDetailsComponent implements OnInit {
   product!: Product;
@@ -19,13 +20,14 @@ export class ProductDetailsComponent implements OnInit {
   home: MenuItem = { icon: 'pi pi-home', routerLink: '/' };
   deliveryOptions: any[];
   selectedDeliveryOption: any;
-  purchaseOption: string = 'subscription'; 
+  purchaseOption: string = 'subscription';
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private basketService: BasketService,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService // Inject MessageService
   ) {
     this.deliveryOptions = [
       { label: 'Deliver every 4 Weeks', value: 4 },
@@ -65,15 +67,23 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart(customerId: number, productId: number): void {
-    console.log('Customer ID:', customerId);
-    console.log('Product ID:', productId);
     if (customerId !== undefined && productId !== undefined) {
       this.basketService.addToBasket(customerId, productId).subscribe(
         response => {
           console.log("Product added to basket", response);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Product added to cart successfully'
+          });
         },
         error => {
           console.error("Error adding product to basket", error);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Could not add product to cart'
+          });
         }
       );
     } else {
