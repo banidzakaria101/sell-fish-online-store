@@ -77,7 +77,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DividerModule } from 'primeng/divider';
 import { ProductConfirmationDialogComponent } from './product/product-confirmation-dialog/product-confirmation-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api';
 
 
 
@@ -177,12 +178,14 @@ import { MessageService } from 'primeng/api';
     DropdownModule,
     InputNumberModule,
     ButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    ConfirmDialogModule,
+    MessageModule
     
 ],
   providers: [
     provideAnimationsAsync(),
-    [MessageService]
+    [MessageService, ConfirmationService]
   ],
   bootstrap: [AppComponent]
 })

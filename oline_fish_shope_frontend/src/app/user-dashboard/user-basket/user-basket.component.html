@@ -1,28 +1,29 @@
-<div *ngIf="products.length > 0; else noProducts" class="product-grid">
-  <div *ngFor="let product of products" class="product-card">
-    <div class="product-image">
-      <a [routerLink]="['/product', product.id]">
-        <img [src]="product.imagePath || 'assets/images/default-fish.jpg'" [alt]="product.name" class="product-img">
-      </a>
-    </div>
-    <div class="product-info">
-      <h3 class="product-name">{{ product.name }}</h3>
-      <p class="product-description">{{ product.description }}</p>
-      <div class="price-action">
-        <span class="price">${{ product.price.toFixed(2) }}</span>
-        <button (click)="removeFromBasket(product.id)" class="remove-btn">
-          Remove
-        </button>
-        <button (click)="makeOrder(product.id)" class="order-btn">
-          Make Order
-        </button>
+<!-- Replace <p-messages> with <p-message> or <p-toast> as needed -->
+  <p-confirmDialog></p-confirmDialog>
+  <p-toast></p-toast> <!-- Use this for multiple toast messages -->
+  
+  <div *ngIf="products.length > 0; else noProducts" class="product-grid">
+    <div *ngFor="let product of products" class="product-card">
+      <div class="product-image">
+        <a [routerLink]="['/product', product.id]">
+          <img [src]="product.imagePath || 'assets/images/default-fish.jpg'" [alt]="product.name" class="product-img">
+        </a>
+      </div>
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="price-action">
+          <span class="price">${{ product.price.toFixed(2) }}</span>
+          <button (click)="confirmRemoveFromBasket(product.id)" class="remove-btn">Remove</button>
+          <button (click)="makeOrder(product.id)" class="order-btn">Make Order</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<ng-template #noProducts>
-  <div class="no-products">
-    <p>No products in the basket.</p>
-  </div>
-</ng-template>
+  
+  <ng-template #noProducts>
+    <div class="no-products">
+      <p>No products in the basket.</p>
+    </div>
+  </ng-template>
+  

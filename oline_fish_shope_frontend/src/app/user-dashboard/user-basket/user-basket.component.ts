@@ -5,6 +5,7 @@ import { JwtService } from '../../services/jwt.service';
 import { ProductService } from '../../services/product.service'; // Import the ProductService
 import { Basket } from '../../models/basket.model';
 import { Product } from '../../models/product.model';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-user-basket',
@@ -20,7 +21,9 @@ export class UserBasketComponent implements OnInit {
     private basketService: BasketService,
     private jwtService: JwtService,
     private productService: ProductService, 
-    private orderService: OrderService
+    private orderService: OrderService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -66,12 +69,35 @@ export class UserBasketComponent implements OnInit {
     }
   }
 
+  confirmRemoveFromBasket(productId: number) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to remove this product from your basket?',
+      header: 'Confirm Remove',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.removeFromBasket(productId); // Proceed with removal
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Removed',
+          detail: 'Product has been removed from your basket',
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Cancelled',
+          detail: 'Product was not removed from your basket',
+        });
+      }
+    });
+  }
+
   removeFromBasket(productId: number) {
     if (this.customerId !== null) {
       this.basketService.removeFromBasket(this.customerId, productId).subscribe(
         updatedBasket => {
           this.basket = updatedBasket;
-          this.products = this.products.filter(p => p.id !== productId); // Update displayed products
+          this.products = this.products.filter(p => p.id !== productId);
         },
         error => {
           console.error('Error removing product from basket:', error);
