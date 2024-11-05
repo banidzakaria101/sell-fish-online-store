@@ -75,12 +75,8 @@ import { AdminOverviewComponent } from './admin/admin-overview/admin-overview.co
 import { BadgeModule } from 'primeng/badge';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DividerModule } from 'primeng/divider';
-import { LottieModule } from 'ngx-lottie';
-import player from 'lottie-web';
 
-export function playerFactory() {
-  return player;
-}
+
 
 @NgModule({
   declarations: [
@@ -176,8 +172,7 @@ export function playerFactory() {
     RadioButtonModule,
     DropdownModule,
     InputNumberModule,
-    ButtonModule,
-    
+    ButtonModule
     
 ],
   providers: [
