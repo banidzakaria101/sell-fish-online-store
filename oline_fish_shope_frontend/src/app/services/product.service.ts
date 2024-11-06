@@ -55,11 +55,8 @@ export class ProductService {
 
   // Get Products by Category Id
   getProductsByCategory(categoryId: number): Observable<Product[]> {
-    const headers = new HttpHeaders({
-    });
-
-    return this.http.get<Product[]>(`${this.apiUrl}/category/${categoryId}`, { headers });
-  }
+    return this.http.get<Product[]>(`${this.apiUrl}/by-category/${categoryId}`);
+}
 
   updateProduct(id: number, product: Partial<Product>): Observable<Product> {
     if (id === undefined || id === null) {

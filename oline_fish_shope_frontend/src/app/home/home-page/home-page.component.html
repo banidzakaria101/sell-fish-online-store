@@ -1,13 +1,17 @@
 <app-header></app-header>
 <div class="main-layout">
   <div class="sidebar">
-    <app-home-sidenav></app-home-sidenav>
+    <app-category-sidebar (categorySelected)="onCategorySelected($event)"></app-category-sidebar>
   </div>
 
   <div class="content">
     <app-product-search (search)="onSearch($event)"></app-product-search>
     <h2>Products</h2>
-    <app-list-product [products]="filteredProducts"></app-list-product>
+    <button (click)="clearFilters()">Clear Filters</button> 
+    <app-list-product 
+      [selectedCategoryId]="currentCategoryId" 
+      [searchTerm]="searchTerm">
+    </app-list-product>
   </div>
 </div>
 <app-footer></app-footer>

@@ -16,6 +16,7 @@ export class ProductSearchComponent {
       debounceTime(300),
       distinctUntilChanged()
     ).subscribe(searchTerm => {
+      console.log('Search term:', searchTerm);
       this.search.emit(searchTerm);
     });
   }

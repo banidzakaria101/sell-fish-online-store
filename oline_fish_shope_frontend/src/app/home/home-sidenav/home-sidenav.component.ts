@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-home-sidenav',
@@ -6,15 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-sidenav.component.css']
 })
 export class HomeSidenavComponent {
-  selectedDepartmentId: number | null = null;
+  @Output() categorySelected = new EventEmitter<number | null>();
+  selectedCategoryId: number | null = null;
 
-  clearAllFilters() {
-    this.selectedDepartmentId = null;
+  onCategorySelected(categoryId: number | null): void {
+    this.selectedCategoryId = categoryId;
+    this.categorySelected.emit(categoryId);
   }
 
-  onDepartmentSelected(departmentId: number): void {
-    this.selectedDepartmentId = departmentId;
-    console.log('Selected Department ID in HomeSidenav:', this.selectedDepartmentId);
-
+  clearAllFilters() {
+    this.selectedCategoryId = null;
+    this.categorySelected.emit(null);
   }
 }

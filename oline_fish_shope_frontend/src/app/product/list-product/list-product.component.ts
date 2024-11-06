@@ -10,8 +10,9 @@ import { CartService } from '../../services/cart.service';
   styleUrls: ['./list-product.component.scss']
 })
 export class ListProductComponent implements OnInit, OnChanges {
-  @Input() products: Product[] = [];
-  @Input() selectedCategoryId: number | null = null; // Accept selected category ID
+  @Input() selectedCategoryId: number | null = null;
+  @Input() searchTerm: string = '';
+  products: Product[] = [];
   filteredProducts: Product[] = [];
 
   constructor(
@@ -21,34 +22,54 @@ export class ListProductComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.loadProducts();
+    this.loadProducts();  // Load products initially
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['selectedCategoryId']) { // Use bracket notation to access the property
-      this.filterProductsByCategory(this.selectedCategoryId); // Filter when category ID changes
+    if (changes['selectedCategoryId'] || changes['searchTerm']) {
+      this.loadProducts();  // Reload products when the selected category or search term changes
     }
   }
 
   loadProducts(): void {
-    this.productService.listProducts().subscribe({
-      next: (products) => {
-        this.products = products;
-        this.filteredProducts = products; // Initialize with all products
-        console.log('Products loaded:', products);
-      },
-      error: (error) => {
-        console.error('Error loading products:', error);
-      }
-    });
+    if (this.selectedCategoryId !== null) {
+      // Load products filtered by category
+      this.productService.getProductsByCategory(this.selectedCategoryId).subscribe({
+        next: (products) => {
+          this.products = products;
+          this.applyFilters();  // Apply filters after fetching products
+        },
+        error: (error) => {
+          console.error('Error loading category products:', error);
+        }
+      });
+    } else {
+      // Load all products if no category is selected
+      this.productService.listProducts().subscribe({
+        next: (products) => {
+          this.products = products;
+          this.applyFilters();  // Apply filters after fetching all products
+        },
+        error: (error) => {
+          console.error('Error loading products:', error);
+        }
+      });
+    }
   }
 
-  filterProductsByCategory(selectedCategoryId: number | null): void {
-    if (selectedCategoryId) {
-      this.filteredProducts = this.products.filter(product => product.category?.id === selectedCategoryId);
-    } else {
-      this.filteredProducts = this.products; // Show all products if no category is selected
+  private applyFilters(): void {
+    let filtered = [...this.products];
+
+    // Apply search term filter
+    if (this.searchTerm.trim()) {
+      const searchLower = this.searchTerm.toLowerCase();
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(searchLower) ||
+        product.description.toLowerCase().includes(searchLower)
+      );
     }
+
+    this.filteredProducts = filtered;
   }
 
   viewProduct(id: number | undefined): void {

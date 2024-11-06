@@ -2,9 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 1rem 1.5rem;
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-section {
@@ -13,50 +13,66 @@
 }
 
 .logo {
-  height: 40px;
-  margin-right: 10px;
+  height: 2.5rem;
+  margin-right: 0.75rem;
 }
 
 .brand-name {
-  font-size: 1.5em;
+  font-size: 1.75rem;
   font-weight: bold;
   color: #333;
 }
 
 .main-nav {
   display: flex;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .nav-item {
   text-decoration: none;
   color: #333;
-  padding: 5px 10px;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .nav-item.active {
   font-weight: bold;
-  border-bottom: 2px solid #007bff;
+  color: #007bff;
+  background-color: #f0f0f0;
+}
+
+.nav-item:hover:not(.active) {
+  background-color: #f0f0f0;
 }
 
 .user-actions {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 1rem;
 }
 
 .icon-button {
   background: none;
   border: none;
-  font-size: 1.2em;
+  font-size: 1.25rem;
   cursor: pointer;
+  color: #333;
+  transition: color 0.2s ease-in-out;
+}
+
+.icon-button:hover {
+  color: #007bff;
 }
 
 .dashboard-button, .login-button, .signup-button {
-  padding: 8px 15px;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .dashboard-button {
@@ -64,18 +80,89 @@
   color: white;
 }
 
+.dashboard-button:hover {
+  background-color: #0056b3;
+}
+
+.login-button, .signup-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.login-button:hover, .signup-button:hover {
+  background-color: #e0e0e0;
+}
+
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.75rem;
 }
 
 .profile-image {
-  width: 32px;
-  height: 32px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
 }
 
 .user-name {
   font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .fishmart-header {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .logo-section {
+    margin-bottom: 1rem;
+  }
+
+  .main-nav {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .user-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.logout-button, .login-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.logout-button {
+  background-color: #e53e3e;
+  color: #fff;
+}
+
+.logout-button:hover {
+  background-color: #c53030;
+}
+
+.login-button {
+  background-color: #3182ce;
+  color: #fff;
+}
+
+.login-button:hover {
+  background-color: #2b6cb0;
+}
+
+@media (max-width: 768px) {
+  /* Existing responsive styles... */
+
+  .logout-button, .login-button {
+    width: 100%;
+    margin-top: 0.75rem;
+  }
 }

@@ -5,9 +5,9 @@
   </div>
 
   <!-- Salary/Price Range Section -->
-  <div class="filter-section">
+  <!-- <div class="filter-section">
     <app-salary-range></app-salary-range>
-  </div>
+  </div> -->
 
   <!-- Department Section 
   <div class="filter-section">
@@ -15,10 +15,13 @@
   </div> -->
 
   <!-- Category Section -->
+  <!-- Category Section -->
   <div class="filter-section">
-    <app-category-sidebar></app-category-sidebar>
+    <app-category-sidebar (categorySelected)="onCategorySelected($event)"></app-category-sidebar>
   </div>
-   
+
+
+
 
 
   <!-- Country of Origin Section -->

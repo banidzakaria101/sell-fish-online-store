@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 
@@ -12,6 +12,10 @@ export class CategorySidebarComponent implements OnInit {
   selectedCategory: Category | null = null;
 
   constructor(private categoryService: CategoryService) {}
+
+  @Output() categorySelected = new EventEmitter<number | null>();
+
+  
 
   ngOnInit(): void {
     this.loadCategories();
@@ -30,6 +34,12 @@ export class CategorySidebarComponent implements OnInit {
 
   selectCategory(category: Category): void {
     this.selectedCategory = category;
-    console.log('Selected Category:', this.selectedCategory);
+    this.categorySelected.emit(category.id);
+    console.log(category)
+  }
+
+  clearCategorySelection(): void {
+    this.selectedCategory = null;
+    this.categorySelected.emit(null);
   }
 }
