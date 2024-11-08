@@ -46,6 +46,18 @@ pipeline {
 //             }
 //         }
 
+        stage('Build Docker Image') {
+            steps {
+                dir('online_fish_shop_backend') {
+                    script {
+                        def imageName = "${DOCKER_HUB_REPO}"
+                        docker.build(imageName)
+                    }
+                }
+            }
+        }
+
+
         stage('Tag and Push Docker Image') {
             steps {
                 dir('online_fish_shop_backend') {
