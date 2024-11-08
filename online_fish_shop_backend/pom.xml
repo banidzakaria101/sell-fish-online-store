@@ -17,7 +17,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>22</java.version>
+		<java.version>17</java.version>
 	</properties>
 
 	<dependencies>
@@ -75,6 +75,25 @@
 			<artifactId>jjwt-jackson</artifactId>
 			<version>0.11.0</version>
 			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.0</version> <!-- Use a stable version -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.0.0</version> <!-- Use a stable version -->
+			<scope>test</scope>
 		</dependency>
 
 
