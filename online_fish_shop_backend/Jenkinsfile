@@ -51,9 +51,9 @@ pipeline {
                 dir('online_fish_shop_backend') {
                     script {
                         docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
-                            def imageName = "${DOCKER_HUB_REPO}-backend:latest"
+                            def imageName = "${DOCKER_HUB_REPO}:latest"
                             bat """
-                                docker tag ${DOCKER_HUB_REPO}-backend ${imageName}
+                                docker tag ${DOCKER_HUB_REPO} ${imageName}
                                 docker push ${imageName}
                             """
                         }
